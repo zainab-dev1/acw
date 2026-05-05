@@ -361,7 +361,7 @@
             </div>
         </div>
 
-<br><br>
+        <br><br>
         <div class="row">
             <div class="col-lg-12">
                 <div class="activity-sections" style="text-align:center;">
@@ -378,7 +378,7 @@
                 </div>
             </div> 
         </div>
-<br><br>
+        <br><br>
         <div class="row">
             <div class="col-lg-12"><br>
                 <div class="acw-divider"></div>

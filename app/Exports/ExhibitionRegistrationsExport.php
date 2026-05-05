@@ -40,7 +40,7 @@ class ExhibitionRegistrationsExport implements FromCollection, WithHeadings, Wit
         return [
             $registration->id,
             $registration->name,
-            $registration->department,
+            (optional($registration->departmentRef)->name ?? $registration->department),
             $registration->email,
             $registration->phone,
             $registration->files->count(),

@@ -122,7 +122,17 @@
 
                         <div class="form-group">
                             <label class="field-label"><i class="ti-briefcase"></i> Department / القسم</label>
-                            {{ Form::text('department', old('department'), ['class'=>'form-control', 'required'=>true]) }}
+                               <select name="department_id" id="department_id" class="form-control" required>
+                                   <option value="" disabled {{ old('department_id') ? '' : 'selected' }}>-- اختر القسم / Select department --</option>
+                                   @foreach(($departments ?? []) as $dept)
+                                       <option value="{{ $dept->id }}" {{ (string)old('department_id') === (string)$dept->id ? 'selected' : '' }}>
+                                           {{ $dept->name }}
+                                       </option>
+                                   @endforeach
+                               </select>
+                               @error('department_id')
+                                   <small class="text-danger">{{ $message }}</small>
+                               @enderror
                         </div>
 
                         <div class="form-group">

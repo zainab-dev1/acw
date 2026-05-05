@@ -49,7 +49,7 @@
                                 <tr>
                                     <td>{{ $reg->id }}</td>
                                     <td>{{ $reg->name }}</td>
-                                    <td>{{ $reg->department }}</td>
+                                       <td>{{ optional($reg->departmentRef)->name ?? $reg->department }}</td>
                                     <td>{{ $reg->email }}</td>
                                     <td>{{ $reg->phone }}</td>
                                     <td>

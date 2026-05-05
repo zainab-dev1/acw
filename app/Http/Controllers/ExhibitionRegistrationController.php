@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Alert;
 use App\Models\ExhibitionRegistration;
 use App\Models\ExhibitionSetting;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,8 +15,9 @@ class ExhibitionRegistrationController extends Controller
     {
         $setting = ExhibitionSetting::current();
 
-        return view('exhibition.register')
-            ->with('setting', $setting);
+        $departments = Department::orderBy('name')->get(['id', 'name']);
+
+        return view('exhibition.register', compact('setting', 'departments'));
     }
 
     public function store(Request $request)
@@ -28,16 +30,20 @@ class ExhibitionRegistrationController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'department' => 'required|string|max:255',
+            'department_id' => 'required|integer|exists:departments,id',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:50',
             'attachments' => 'required',
             'attachments.*' => 'file|max:10240|mimes:pdf,jpg,jpeg,png,doc,docx,ppt,pptx,xls,xlsx,zip',
         ]);
 
+        $department = Department::find($validated['department_id']);
+
         $registration = ExhibitionRegistration::create([
             'name' => $validated['name'],
-            'department' => $validated['department'],
+            'department_id' => $validated['department_id'],
+            // Keep legacy string column populated so existing exports/admin lists keep working.
+            'department' => $department ? $department->name : null,
             'email' => $validated['email'],
             'phone' => $validated['phone'],
         ]);
