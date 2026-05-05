@@ -360,8 +360,27 @@
                 <div class="acw-divider"></div>
             </div>
         </div>
-                    <br><br>
 
+<br><br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="activity-sections" style="text-align:center;">
+                    <div class="activity-sections-title activity-sections-title-sm">  هل لديك مشروع تود عرضه في المعرض المصاحب؟  <br> Do you have a project you would like to showcase at the exhibition? <br><br></div>
+                        <a href="{{ route('exhibition.register') }}" style="color:white; text-align:center; border: 1px solid white; padding: 8px 12px; border-radius: 25px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(4px); transition: all 0.3s ease;">
+                            <h4 style="margin: 0; display: inline-block; text-align: center;">
+                                Click here  - اضغط هنا 
+                            </h4>
+                        </a>
+                    </div>
+                </div>
+            </div> 
+        </div>
+<br><br>
+        <div class="row">
+            <div class="col-lg-12"><br>
+                <div class="acw-divider"></div>
+            </div>
+        </div>
         <!-- Sponsors / الداعمين -->
         <div class="row">
             <div class="col-lg-12">
@@ -406,11 +425,11 @@
                             </div>
                     </div>
                     <br><br>
-        <div class="row">
-            <div class="col-lg-12"><br>
-                <div class="acw-divider"></div>
-            </div>
-        </div>
+                    <div class="row">
+                        <div class="col-lg-12"><br>
+                            <div class="acw-divider"></div>
+                        </div>
+                    </div>
                     <div style="max-width: 800px; margin: 14px auto 0;">
                         <div style="display:flex; align-items:stretch; justify-content:center; flex-wrap:wrap; gap: 12px;">
                             <div style="min-width: 220px; flex: 1 1 220px; display:flex; align-items:center; gap: 10px; text-align:right; direction: rtl;">
@@ -436,16 +455,13 @@
                 </div>
             </div>
         </div>
-                    <br><br>
-                    <br><br>
-
-        <!-- Footer outside white card -->
-
-    </div>
+    <br><br>
+    <br><br>
     <div class="row mt-4">
-    <div class="col-lg-12">
+        <div class="col-lg-12">
             @include('layouts._footer')
         </div>
+    </div>
     </div>
     </div>
     </div>
