@@ -37,10 +37,10 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 2,
                 'objectguid' => NULL,
-                'username' => 'avc-office',
+                'username' => 'acw-office',
                 'password' => Hash::make('Oman@123'),
                 'fullname' => 'Academic Creativity Week Office',
-                'email' => 'avc-sll@utas.edu.om',
+                'email' => 'acw-office@utas.edu.om',
                 'department_id' => 2,
                 'remember_token' => NULL,
                 'created_at' => NULL,
