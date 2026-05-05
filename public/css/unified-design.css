@@ -1,0 +1,576 @@
+/* ===================================
+   AVC Activities System - Unified Design
+   Modern & Professional Dashboard
+   =================================== */
+
+/* Custom Font Face - DIN Next Arabic */
+@font-face {
+    font-family: 'DINNextLTArabic';
+    src: url('../fonts/DINNextLTArabic-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DINNextLTArabic';
+    src: url('../fonts/DINNextLTArabic-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DINNextLTArabic';
+    src: url('../fonts/DINNextLTArabic-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DINNextLTArabic';
+    src: url('../fonts/DINNextLTArabic-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary-color: #0ea5e9;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --dark-color: #1e293b;
+    --light-color: #f1f5f9;
+    --sidebar-bg: #ffffff;
+    --sidebar-text: #64748b;
+    --header-bg: #ffffff;
+    --content-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --sidebar-width: 280px;
+}
+
+/* ===================================
+   Global Styles
+   =================================== */
+body {
+    font-family: 'DINNextLTArabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--content-bg);
+    color: var(--dark-color);
+    font-size: 14px;
+}
+
+/* ===================================
+   Sidebar - Clean & Modern
+   =================================== */
+.sidebar {
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    width: var(--sidebar-width);
+    position: fixed;
+    height: 100vh;
+    z-index: 999;
+    box-shadow: var(--shadow-sm);
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar .nano-content {
+    padding-bottom: 30px;
+    padding-top: 0 !important;
+}
+
+/* Logo Area */
+.sidebar .logo {
+    padding: 0 25px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--border-color);
+    background: #4f46e5;
+    margin: 0;
+    position: relative;
+    top: 0;
+}
+
+.sidebar .logo a {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.sidebar .logo a i {
+    font-size: 24px;
+}
+
+/* Menu Items */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 0;
+}
+
+.sidebar ul li.label {
+    color: var(--sidebar-text);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 20px 25px 10px 25px;
+    font-weight: 600;
+}
+
+.sidebar ul li a {
+    color: var(--sidebar-text);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    margin: 0 5px;
+    border-radius: 8px;
+}
+
+.sidebar ul li a:hover {
+    background: var(--light-color);
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+.sidebar ul li a i {
+    margin-right: 12px;
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar ul li.active > a,
+.sidebar ul li a.active {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+    font-weight: 600;
+    margin: 0 5px;
+    border-radius: 8px;
+}
+
+/* Collapse Icon */
+.sidebar ul li a .sidebar-collapse-icon {
+    margin-left: auto;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar ul li a .sidebar-collapse-icon.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Submenu */
+.sidebar ul li ul {
+    margin: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.02);
+    display: none;
+}
+
+.sidebar ul li ul li {
+    margin: 0;
+}
+
+.sidebar ul li ul li a {
+    padding: 10px 25px 10px 60px;
+    font-size: 13px;
+    border-left: 3px solid transparent;
+}
+
+.sidebar ul li ul li a:hover {
+    background: var(--light-color);
+    color: var(--primary-color);
+}
+
+.sidebar ul li ul li a i {
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+/* ===================================
+   Header - Unified with Sidebar
+   =================================== */
+.header {
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0;
+    position: fixed;
+    right: 0;
+    left: var(--sidebar-width);
+    top: 0;
+    z-index: 998;
+    height: 60px;
+    box-shadow: var(--shadow-sm);
+}
+
+.header .container-fluid {
+    padding: 0 30px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.header .hamburger {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.header .hamburger:hover {
+    background: var(--light-color);
+}
+
+.header .hamburger .line {
+    background: var(--dark-color);
+    height: 2px;
+    width: 20px;
+    display: block;
+    margin: 4px 0;
+    border-radius: 2px;
+}
+
+/* User Avatar */
+.header .user-avatar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--light-color);
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.header .user-avatar:hover {
+    background: var(--border-color);
+}
+
+.header .user-avatar i:first-child {
+    font-size: 16px;
+}
+
+.header .user-avatar i:last-child {
+    font-size: 10px;
+}
+
+/* Dropdown */
+.dropdown-profile {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    margin-top: 8px;
+    min-width: 200px;
+}
+
+.dropdown-profile ul {
+    padding: 8px;
+    margin: 0;
+}
+
+.dropdown-profile ul li {
+    list-style: none;
+}
+
+.dropdown-profile ul li a {
+    padding: 10px 16px;
+    color: var(--dark-color);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.dropdown-profile ul li a:hover {
+    background: var(--light-color);
+    color: var(--primary-color);
+}
+
+.dropdown-profile ul li a i {
+    font-size: 16px;
+}
+
+/* ===================================
+   Content Area
+   =================================== */
+.content-wrap {
+    margin-left: var(--sidebar-width);
+    margin-top: 60px;
+    padding: 30px;
+    min-height: calc(100vh - 60px);
+    background: var(--content-bg);
+}
+
+.main {
+    padding: 0;
+}
+
+/* ===================================
+   Cards - Modern Design
+   =================================== */
+.card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.stat-widget-one {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-widget-one .stat-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.stat-widget-one .stat-icon.color-primary {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-color);
+}
+
+.stat-widget-one .stat-icon.color-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+}
+
+.stat-widget-one .stat-icon.color-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+}
+
+.stat-widget-one .stat-icon.color-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+}
+
+.stat-widget-one .stat-content {
+    flex: 1;
+}
+
+.stat-widget-one .stat-digit {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 6px;
+}
+
+.stat-widget-one .stat-text {
+    font-size: 13px;
+    color: var(--sidebar-text);
+}
+
+.stat-widget-one .stat-text a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.stat-widget-one .stat-text a:hover {
+    color: var(--primary-dark);
+}
+
+/* Welcome Card */
+.welcome-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    background: #4f46e5;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-md);
+}
+
+.welcome-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.welcome-card p {
+    font-size: 15px;
+    opacity: 0.95;
+    margin: 0;
+}
+
+/* ===================================
+   Buttons
+   =================================== */
+.btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .header {
+        left: 0;
+    }
+    
+    .content-wrap {
+        margin-left: 0;
+    }
+    
+    body.sidebar-open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+    }
+}
+
+/* ===================================
+   Animations
+   =================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Delay Classes */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+
+/* ===================================
+   Scrollbar Styling
+   =================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--sidebar-text);
+}
+
+/* ===================================
+   Footer Styling
+   =================================== */
+.footer {
+    background: transparent;
+    color: white;
+    padding: 15px 0;
+    margin-top: 40px;
+}
+
+.footer p {
+    color: white;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+}
+
+.footer p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.footer p a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
