@@ -157,6 +157,12 @@
 
                         {{ Form::close() }}
 
+                        <div class="text-center" style="margin-top: 15px;">
+                            <a href="{{ route('public') }}" style="color: #1e188eff; font-size: 14px; text-decoration: none; font-weight: 800;">
+                                <i class="ti-home"></i> Home - الرئيسية
+                            </a>
+                        </div>
+
                     @endif
 
                 </div>

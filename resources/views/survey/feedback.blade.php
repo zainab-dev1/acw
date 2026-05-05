@@ -48,6 +48,12 @@
                             <a href="{{ route('activity.public') }}" style="color: #4f46e5; font-size: 14px; text-decoration: none; font-weight: 500;">
                                 <i class="ti-arrow-left"></i> Back to Activities
                             </a>
+
+                            <span style="display:inline-block; margin: 0 10px; opacity: 0.35;">|</span>
+
+                            <a href="{{ route('public') }}" style="color: #4f46e5; font-size: 14px; text-decoration: none; font-weight: 800;">
+                                <i class="ti-home"></i> Home - الرئيسية
+                            </a>
                         </div>
                     </div>
             </div>

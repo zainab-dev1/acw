@@ -123,6 +123,9 @@
                         <a href="{{ route('public') }}" class="btn btn-light" style="border-radius: 10px; font-weight: 800;">
                             <i class="ti-arrow-left"></i> Back - رجوع
                         </a>
+                        <a href="{{ route('public') }}" class="btn btn-outline-light" style="border-radius: 10px; font-weight: 900;">
+                            <i class="ti-home"></i> Home - الرئيسية
+                        </a>
                     </div>
                 </div>
             </div>

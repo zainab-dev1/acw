@@ -83,9 +83,14 @@
                 </div>
             </div>
             <div>
-                <a href="{{ route('public.upcoming') }}" class="btn btn-light" style="border-radius: 10px; font-weight: 700;">
-                    <i class="ti-arrow-left"></i> Back
-                </a>
+                <div class="d-flex" style="gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+                    <a href="{{ route('public.upcoming') }}" class="btn btn-light" style="border-radius: 10px; font-weight: 700;">
+                        <i class="ti-arrow-left"></i> Back
+                    </a>
+                    <a href="{{ route('public') }}" class="btn btn-outline-light" style="border-radius: 10px; font-weight: 800;">
+                        <i class="ti-home"></i> Home - الرئيسية
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -144,30 +149,39 @@
 
         @if(!empty($activity->public_file_1_path) || !empty($activity->public_file_2_path))
             <hr style="margin: 22px 0;" />
-            <h4 style="font-weight: 800; color: #0f172a;">More details files</h4>
-            <div class="meta-row" style="margin-top: 10px;">
-                @if(!empty($activity->public_file_1_path))
-                    <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-                        <div>
-                            <div class="label">File 1</div>
-                            <div class="value">{{ $activity->public_file_1_name ?? basename($activity->public_file_1_path) }}</div>
-                        </div>
-                        <a class="btn btn-outline-primary" style="border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_1_path) }}" target="_blank" rel="noopener">
-                            <i class="ti-download"></i> Download
-                        </a>
+
+            <div style="border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 16px; padding: 18px 18px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);">
+                <div class="d-flex align-items-center" style="gap: 10px; margin-bottom: 12px;">
+                    <div style="width: 34px; height: 34px; border-radius: 12px; background: rgba(245, 158, 11, 0.18); display:flex; align-items:center; justify-content:center;">
+                        <i class="ti-clip" style="color:#b45309;"></i>
                     </div>
-                @endif
-                @if(!empty($activity->public_file_2_path))
-                    <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-                        <div>
-                            <div class="label">File 2</div>
-                            <div class="value">{{ $activity->public_file_2_name ?? basename($activity->public_file_2_path) }}</div>
+                    <h4 style="font-weight: 900; margin: 0;">More details files - تفاصيل اكثر</h4>
+                </div>
+
+                <div class="meta-row" style="margin-top: 10px;">
+                    @if(!empty($activity->public_file_1_path))
+                        <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px; border: 1px solid rgba(245, 158, 11, 0.35);">
+                            <div>
+                                <div class="label">File 1</div>
+                                <div class="value">{{ $activity->public_file_1_name ?? basename($activity->public_file_1_path) }}</div>
+                            </div>
+                            <a class="btn btn-outline-primary" style="border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_1_path) }}" target="_blank" rel="noopener">
+                                <i class="ti-download"></i> Download
+                            </a>
                         </div>
-                        <a class="btn btn-outline-primary" style="border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_2_path) }}" target="_blank" rel="noopener">
-                            <i class="ti-download"></i> Download
-                        </a>
-                    </div>
-                @endif
+                    @endif
+                    @if(!empty($activity->public_file_2_path))
+                        <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px; border: 1px solid rgba(245, 158, 11, 0.35);">
+                            <div>
+                                <div class="label">File 2</div>
+                                <div class="value">{{ $activity->public_file_2_name ?? basename($activity->public_file_2_path) }}</div>
+                            </div>
+                            <a class="btn btn-outline-primary" style="border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_2_path) }}" target="_blank" rel="noopener">
+                                <i class="ti-download"></i> Download
+                            </a>
+                        </div>
+                    @endif
+                </div>
             </div>
         @endif
 

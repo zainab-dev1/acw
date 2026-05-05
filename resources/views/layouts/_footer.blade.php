@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="acw-footer">
             <p style="margin: 0;">
-                {{ now()->year }} © Academic Creativity Week. Developed By: System Development Team - UTAS Salalah |
+                {{ now()->year }} © Academic Creativity Week. Developed By: System Development Team - Zainab Al Awaid - UTAS Salalah |
                 <a href="{{ route('login') }}" style="color: inherit; text-decoration: underline; font-weight: 700;">Staff Login</a>
             </p>
         </div>
