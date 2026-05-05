@@ -365,8 +365,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="activity-sections" style="text-align:center;">
-                    <div class="activity-sections-title activity-sections-title-sm">  هل لديك مشروع تود عرضه في المعرض المصاحب؟  <br> Do you have a project you would like to showcase at the exhibition? <br><br></div>
-                        <a href="{{ route('exhibition.register') }}" style="color:white; text-align:center; border: 1px solid white; padding: 8px 12px; border-radius: 25px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(4px); transition: all 0.3s ease;">
+                    <div class="activity-sections-title activity-sections-title-sm"> 
+                        <i class="ti-gallery" style="color: #fff; font-size: 50px; line-height: 1; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35)); font-family: 'themify' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;"></i>
+                        <br>
+                         هل لديك مشروع تود عرضه في المعرض المصاحب؟  <br> Do you have a project you would like to showcase at the exhibition? <br><br></div>
+                        <a href="{{ route('exhibition.register') }}" style="color:white; text-align:center; border: 1px solid white; padding: 10px 16px; border-radius: 25px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(4px); transition: all 0.3s ease;">
                             <h4 style="margin: 0; display: inline-block; text-align: center;">
                                 Click here  - اضغط هنا 
                             </h4>
