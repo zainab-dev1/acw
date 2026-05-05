@@ -182,8 +182,8 @@
                         @if((int)($survey->has_attachment ?? 0) === 1)
                         <div class="form-group">
                             <label class="field-label"><i class="ti-clip"></i> Attach File - إرفاق ملف</label>
-                            {{ Form::file('attachment', ['class'=>'form-control', 'required'=>false, 'accept' => '.pdf,.jpg,.jpeg,.png,.doc,.docx']) }}
-                            <small class="text-muted">Optional (حسب متطلبات الفعالية).</small>
+                            {{ Form::file('attachment', ['class'=>'form-control', 'required'=>false]) }}
+                            <small class="text-muted">Optional (يمكن رفع أي نوع ملف بما في ذلك الصوت/الفيديو حسب متطلبات الفعالية).</small>
                         </div>
                         @endif
                         

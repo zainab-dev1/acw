@@ -335,7 +335,8 @@ class ActivityController extends Controller
         $requiresAttachment = (int)($survey->has_attachment ?? 0) === 1;
         if ($requiresAttachment) {
             $request->validate([
-                'attachment' => 'nullable|file|max:5120|mimes:pdf,jpg,jpeg,png,doc,docx',
+                // Allow any file type (including video/audio). Size is limited for safety.
+                'attachment' => 'nullable|file|max:5120',
             ]);
         }
         
