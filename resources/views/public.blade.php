@@ -345,10 +345,10 @@
         </div>
 <br><br>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="text-align:center;">
                 <div class="activity-sections">
                     <div style="direction: rtl;" class="activity-sections-title activity-sections-title-sm"> استكشف الانشطة والفعاليات ... Discover More Activities <br><br></div>
-                                <a href="{{ route('public.upcoming') }}" style="color:white; text-align:center; border: 1px solid white; padding: 10px 16px; border-radius: 25px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(4px); transition: all 0.3s ease; color:white; text-align:center;"><h4>
+                                <a href="{{ route('public.upcoming') }}" style="color:white; text-align:center; border: 1px solid white; padding: 10px 16px; border-radius: 35px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(4px); transition: all 0.3s ease;"><h4>
                                     Click here  - اضغط هنا 
                                 </h4></a>
                     </div>
