@@ -82,6 +82,13 @@
         box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
         outline: none;
     }
+    /* Make the department dropdown height consistent (Bootstrap's select can be shorter) */
+    .attendance-form select.form-control[name="department_id"] {
+        height: 48px;
+        line-height: 48px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
     .btn-acw {
         background: linear-gradient(135deg, #284ca9ff 0%, #284ca9ff 100%);
         border: none;

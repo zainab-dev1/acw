@@ -93,7 +93,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <div class="acw-card">
 
                     @if($setting && !$setting->is_open)
@@ -122,7 +122,7 @@
 
                         <div class="form-group">
                             <label class="field-label"><i class="ti-briefcase"></i> Department / القسم</label>
-                               <select name="department_id" id="department_id" class="form-control" required>
+                               <select name="department_id" id="department_id" class="form-control" required style="height: 45px;">
                                    <option value="" disabled {{ old('department_id') ? '' : 'selected' }}>-- اختر القسم / Select department --</option>
                                    @foreach(($departments ?? []) as $dept)
                                        <option value="{{ $dept->id }}" {{ (string)old('department_id') === (string)$dept->id ? 'selected' : '' }}>
