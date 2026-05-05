@@ -19,6 +19,9 @@ class Activity extends Model
 
     protected $guarded = ['id'];
 
+    // Allow guarding everything except id; guarded already covers it.
+    // public_file_1_path/public_file_2_path are stored on the events table.
+
     public function type()
     {
         return $this->hasOne(EventType::class, 'id', 'survey_type_id');

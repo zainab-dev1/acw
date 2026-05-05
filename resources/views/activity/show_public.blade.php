@@ -142,6 +142,35 @@
         <h4 style="font-weight: 800; color: #0f172a;">Description</h4>
         <div class="desc">{{ $activity->detail->description ?? '-' }}</div>
 
+        @if(!empty($activity->public_file_1_path) || !empty($activity->public_file_2_path))
+            <hr style="margin: 22px 0;" />
+            <h4 style="font-weight: 800; color: #0f172a;">More details files</h4>
+            <div class="meta-row" style="margin-top: 10px;">
+                @if(!empty($activity->public_file_1_path))
+                    <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                        <div>
+                            <div class="label">File 1</div>
+                            <div class="value">Download / تحميل</div>
+                        </div>
+                        <a class="btn btn-outline-primary" style="border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_1_path) }}" target="_blank" rel="noopener">
+                            <i class="ti-download"></i> Download
+                        </a>
+                    </div>
+                @endif
+                @if(!empty($activity->public_file_2_path))
+                    <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                        <div>
+                            <div class="label">File 2</div>
+                            <div class="value">Download / تحميل</div>
+                        </div>
+                        <a class="btn btn-outline-primary" style="border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_2_path) }}" target="_blank" rel="noopener">
+                            <i class="ti-download"></i> Download
+                        </a>
+                    </div>
+                @endif
+            </div>
+        @endif
+
         <hr style="margin: 22px 0;" />
 
         <div class="d-flex justify-content-between flex-wrap" style="gap: 10px;">

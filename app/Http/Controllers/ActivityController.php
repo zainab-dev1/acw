@@ -101,6 +101,20 @@ class ActivityController extends Controller
 
         $activity = Activity::create($data);
 
+        // Public details files (optional, up to 2)
+        // Stored on public disk so we can show links in the public activity page.
+        if ($request->hasFile('public_file_1')) {
+            $path = $request->file('public_file_1')->store("activity_public_files/{$activity->id}", 'public');
+            $activity->public_file_1_path = $path;
+        }
+        if ($request->hasFile('public_file_2')) {
+            $path = $request->file('public_file_2')->store("activity_public_files/{$activity->id}", 'public');
+            $activity->public_file_2_path = $path;
+        }
+        if ($activity->isDirty(['public_file_1_path', 'public_file_2_path'])) {
+            $activity->save();
+        }
+
         \Log::info('Activity created', ['id' => $activity->id, 'data' => $data]);
 
         Alert::success('Success', 'Activity Added');
@@ -152,6 +166,23 @@ class ActivityController extends Controller
         $data['has_feedback'] = (int)($request->input('has_feedback', 1) ?? 1);
 
         $survey->update($data);
+
+        // Public details files (optional, up to 2)
+        if ($request->hasFile('public_file_1')) {
+            if (!empty($survey->public_file_1_path) && Storage::disk('public')->exists($survey->public_file_1_path)) {
+                Storage::disk('public')->delete($survey->public_file_1_path);
+            }
+            $survey->public_file_1_path = $request->file('public_file_1')->store("activity_public_files/{$survey->id}", 'public');
+        }
+        if ($request->hasFile('public_file_2')) {
+            if (!empty($survey->public_file_2_path) && Storage::disk('public')->exists($survey->public_file_2_path)) {
+                Storage::disk('public')->delete($survey->public_file_2_path);
+            }
+            $survey->public_file_2_path = $request->file('public_file_2')->store("activity_public_files/{$survey->id}", 'public');
+        }
+        if ($survey->isDirty(['public_file_1_path', 'public_file_2_path'])) {
+            $survey->save();
+        }
 
         Alert::success('Success', 'Activity Updated');
 

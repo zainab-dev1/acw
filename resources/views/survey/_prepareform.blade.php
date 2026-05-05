@@ -54,4 +54,17 @@
     <small class="text-muted">If closed, the public page will not show the Feedback button (even if registration is open).</small>
 </div>
 
+<hr>
+
+<div class="form-group">
+    <label for="public_file_1">Public details file 1 (optional)</label>
+    {{ Form::file('public_file_1', ['class' => 'form-control']) }}
+    <small class="text-muted">This file will be shown on the public activity page to help users during registration.</small>
+</div>
+
+<div class="form-group">
+    <label for="public_file_2">Public details file 2 (optional)</label>
+    {{ Form::file('public_file_2', ['class' => 'form-control']) }}
+</div>
+
 <button class="btn btn-success"> {{ $submitText }}</button>
