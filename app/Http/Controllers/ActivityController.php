@@ -104,14 +104,18 @@ class ActivityController extends Controller
         // Public details files (optional, up to 2)
         // Stored on public disk so we can show links in the public activity page.
         if ($request->hasFile('public_file_1')) {
-            $path = $request->file('public_file_1')->store("activity_public_files/{$activity->id}", 'public');
+            $file = $request->file('public_file_1');
+            $path = $file->store("activity_public_files/{$activity->id}", 'public');
             $activity->public_file_1_path = $path;
+            $activity->public_file_1_name = $file->getClientOriginalName();
         }
         if ($request->hasFile('public_file_2')) {
-            $path = $request->file('public_file_2')->store("activity_public_files/{$activity->id}", 'public');
+            $file = $request->file('public_file_2');
+            $path = $file->store("activity_public_files/{$activity->id}", 'public');
             $activity->public_file_2_path = $path;
+            $activity->public_file_2_name = $file->getClientOriginalName();
         }
-        if ($activity->isDirty(['public_file_1_path', 'public_file_2_path'])) {
+        if ($activity->isDirty(['public_file_1_path', 'public_file_2_path', 'public_file_1_name', 'public_file_2_name'])) {
             $activity->save();
         }
 
@@ -172,15 +176,19 @@ class ActivityController extends Controller
             if (!empty($survey->public_file_1_path) && Storage::disk('public')->exists($survey->public_file_1_path)) {
                 Storage::disk('public')->delete($survey->public_file_1_path);
             }
-            $survey->public_file_1_path = $request->file('public_file_1')->store("activity_public_files/{$survey->id}", 'public');
+            $file = $request->file('public_file_1');
+            $survey->public_file_1_path = $file->store("activity_public_files/{$survey->id}", 'public');
+            $survey->public_file_1_name = $file->getClientOriginalName();
         }
         if ($request->hasFile('public_file_2')) {
             if (!empty($survey->public_file_2_path) && Storage::disk('public')->exists($survey->public_file_2_path)) {
                 Storage::disk('public')->delete($survey->public_file_2_path);
             }
-            $survey->public_file_2_path = $request->file('public_file_2')->store("activity_public_files/{$survey->id}", 'public');
+            $file = $request->file('public_file_2');
+            $survey->public_file_2_path = $file->store("activity_public_files/{$survey->id}", 'public');
+            $survey->public_file_2_name = $file->getClientOriginalName();
         }
-        if ($survey->isDirty(['public_file_1_path', 'public_file_2_path'])) {
+        if ($survey->isDirty(['public_file_1_path', 'public_file_2_path', 'public_file_1_name', 'public_file_2_name'])) {
             $survey->save();
         }
 

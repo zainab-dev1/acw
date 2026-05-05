@@ -150,7 +150,7 @@
                     <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
                         <div>
                             <div class="label">File 1</div>
-                            <div class="value">Download / تحميل</div>
+                            <div class="value">{{ $activity->public_file_1_name ?? basename($activity->public_file_1_path) }}</div>
                         </div>
                         <a class="btn btn-outline-primary" style="border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_1_path) }}" target="_blank" rel="noopener">
                             <i class="ti-download"></i> Download
@@ -161,7 +161,7 @@
                     <div class="meta-item" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
                         <div>
                             <div class="label">File 2</div>
-                            <div class="value">Download / تحميل</div>
+                            <div class="value">{{ $activity->public_file_2_name ?? basename($activity->public_file_2_path) }}</div>
                         </div>
                         <a class="btn btn-outline-primary" style="border-radius: 10px; font-weight: 800;" href="{{ asset('storage/' . $activity->public_file_2_path) }}" target="_blank" rel="noopener">
                             <i class="ti-download"></i> Download
