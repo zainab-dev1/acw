@@ -362,7 +362,7 @@ class ActivityController extends Controller
         EventAttendance::create($payload);
         Alert::success(
             'تم التسجيل بنجاح',
-            'تم التسجيل في الفعالية بنجاح.\nRegistration completed successfully.'
+            'تم التسجيل في الفعالية بنجاح - Registration completed successfully.'
         );
         return redirect()->route('activity.register', $id);
     }
