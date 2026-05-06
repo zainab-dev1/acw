@@ -134,8 +134,6 @@
             @endif
         @endif
         <br>
-        <br>
-
     </div>
     <div class="assignatory">
     <table width="90%" border="0">
