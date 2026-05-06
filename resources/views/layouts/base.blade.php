@@ -10,8 +10,8 @@
     <title>Academic Creativity Week</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('theme/images/acw-logo.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('theme/images/acw-logo.png') }}">
     
     <!-- Styles -->
     <link href="{{asset('theme/css/lib/calendar2/pignose.calendar.min.css')}}" rel="stylesheet">
