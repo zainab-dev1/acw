@@ -15,4 +15,3 @@
 @endif
 <p><strong>Transport Required:</strong> @if ($visit_requests->is_transport) YES @else NO @endif</p>
 <p><strong>Requested By:</strong> {{ $visit_requests->requested_by->fullname }}</p>
-<strong><a href="https://www.sct.edu.om/icec/public/visits">Approve/Reject Link</a></strong>
