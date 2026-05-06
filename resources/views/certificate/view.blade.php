@@ -21,7 +21,7 @@
     body {
         font-family: DNMed;
         margin: 0px;
-        background-image:    url( "data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/certbg1.png'))) }}");
+        background-image:    url( "data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/certbg.png'))) }}");
         background-size:     cover;
         background-repeat:   no-repeat;
         background-position: 0% 0%;
@@ -139,8 +139,7 @@
     <table width="90%" border="0">
         <tr>
             <td width="45%" align="center">
-                <!--<img style="width: 150px; float: center; margin-left: 170px; margin-top: -6px; z-index: -10px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Signature.png'))) }}" alt="">
-                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->eye('circle')->size(100)->generate($qrlink)) !!} ">-->
+                <img style="width: 150px; float: center; margin-left: 170px; margin-top: -6px; z-index: -10px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Signature.png'))) }}" alt="">
             </td>
             <td></td>
             <td></td>
@@ -151,7 +150,7 @@
              مساعد رئيس الجامعة بصلالة</p>
             </td>
             <td width="25%" align="center">
-               <!-- <img style="width: 160px; float: center; margin-top:-41px; margin-left:120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Stamp.png'))) }}" alt="">-->
+               <img style="width: 160px; float: center; margin-top:-41px; margin-left:120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Stamp.png'))) }}" alt="">
             </td>
             <td width="30%" align="center">
             </td>
