@@ -91,7 +91,7 @@
     }
     .cert_date {
         margin-top: -3px;
-        font-size: 20px;
+        font-size: 19px;
     }
     .assignatory {
         margin-top: 0.1px;
