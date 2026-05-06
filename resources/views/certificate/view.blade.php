@@ -92,6 +92,14 @@
     .cert_date {
         margin-top: 0.05px;
         font-size: 20px;
+        width: 100%;
+        display: block;
+        white-space: normal;
+    }
+
+    .rtl {
+        direction: rtl;
+        unicode-bidi: embed;
     }
     .assignatory {
         margin-top: 0.1px;
@@ -126,10 +134,10 @@
 
         @if($fromDate)
             @if($isMultiDay)
-                <p class="cert_date" style="dir:rtl;">التي اقيمـت من {{ $fromAr }} إلى {{ $toAr }} بفـرع الجامعة ضمن فعاليات أسبوع الإبداع الأكاديمي </p>
+                <p class="cert_date rtl" dir="rtl">التي اقيمـت من {{ $fromAr }} إلى {{ $toAr }} بفـرع الجامعة ضمن فعاليات أسبوع الإبداع الأكاديمي</p>
                 <p class="cert_date">Held from {{ $fromEn }} to {{ $toEn }} at UTAS-Salalah As part of the Academic Creativity Week activities</p>
             @else
-                <p class="cert_date" style="dir:rtl;">التي اقيمـت في {{ $fromAr }}  بفـرع الجامعة ضمن فعاليات أسبوع الإبداع الأكاديمي </p>
+                <p class="cert_date rtl" dir="rtl">التي اقيمـت في {{ $fromAr }} بفـرع الجامعة ضمن فعاليات أسبوع الإبداع الأكاديمي</p>
                 <p class="cert_date">Held on {{ $fromEn }} at UTAS-Salalah As part of the Academic Creativity Week activities.</p>
             @endif
         @endif
