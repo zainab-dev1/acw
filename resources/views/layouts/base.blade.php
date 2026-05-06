@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- theme meta -->
     <meta name="theme-name" content="avc-office-events" />
     <title>Academic Creativity Week</title>
@@ -56,6 +56,8 @@
             width: auto;
             height: var(--header-logo-height);
         }
+        /* Avoid global overrides on Bootstrap's .container (it breaks layout on mobile).
+           Keep mobile tweaks scoped to ACW components instead. */
     </style>
     @yield('css')
     @livewireStyles

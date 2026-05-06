@@ -67,6 +67,45 @@ body {
 }
 
 /* ===================================
+   Public pages – mobile responsiveness
+   (Many public blades use inline styles; these rules act as safe overrides)
+   =================================== */
+
+@media (max-width: 576px) {
+    /* Make default container less wide-looking on phones */
+    .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    /* Center common header rows used in public pages */
+    .detail-hero .d-flex.justify-content-between,
+    .acw-header {
+        justify-content: center !important;
+        text-align: center;
+    }
+
+    /* Center Bootstrap button groups / action areas */
+    .detail-hero .d-flex,
+    .detail-card .d-flex {
+        justify-content: center;
+    }
+
+    /* Reduce heavy paddings that make pages feel oversized */
+    .detail-card,
+    .acw-card {
+        padding: 18px !important;
+        border-radius: 16px;
+    }
+
+    /* Make buttons easier to tap and avoid overflow */
+    .btn {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+/* ===================================
    Sidebar - Clean & Modern
    =================================== */
 .sidebar {

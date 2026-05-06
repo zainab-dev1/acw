@@ -132,7 +132,7 @@
     }
     @media (max-width: 576px) {
         .activity-sections-title { font-size: 34px; }
-        .activity-sections-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .activity-sections-grid { grid-template-columns: 1fr; }
     }
     .activity-section-item {
         text-align: center;
@@ -229,12 +229,62 @@
         top: 50%;
         transform: translateY(-50%);
         height: 2px;
-        background: linear-gradient(
-            90deg,
-            rgba(0, 208, 255, 0) 0%,
-            rgba(0, 208, 255, 0.85) 18%,
-            rgba(190, 246, 255, 0.95) 50%,
-            rgba(0, 208, 255, 0.85) 82%,
+    /* --- Mobile tweaks for homepage only --- */
+    @media (max-width: 576px) {
+        /* Main title */
+        h1 {
+            font-size: 36px !important;
+            line-height: 1.15;
+        }
+
+        .acw-header {
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .acw-header .acw-logo { max-width: 170px; }
+        .acw-header .utas-logo { max-width: 220px; }
+
+        .acw-intro {
+            font-size: 18px;
+            padding: 12px 12px;
+            line-height: 1.8;
+        }
+
+        .activity-sections { padding: 14px 10px 10px; }
+        .activity-sections-title { font-size: 28px; }
+        .activity-sections-title.activity-sections-title-sm { font-size: 20px; }
+
+        .activity-section-icon { width: 84px; height: 84px; border-radius: 22px; }
+        .activity-section-label {
+            font-size: 22px;
+            padding: 10px 12px;
+            border-radius: 999px;
+        }
+
+        /* Sponsors grid: fit 2 per row */
+        .acw-sponsor-card { width: 48% !important; min-width: 0 !important; }
+        .acw-sponsor-card .acw-sponsor-name { font-size: 14px !important; }
+        .acw-sponsor-card .acw-sponsor-logo { height: 70px !important; }
+
+        /* Date/venue/time row */
+        .acw-info-row {
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 12px !important;
+        }
+
+        .acw-info-item {
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: 420px;
+            justify-content: center !important;
+            text-align: center !important;
+            direction: rtl !important;
+            align-items: center !important;
+        }
+        .acw-info-text { font-size: 18px !important; }
+        .acw-info-item img { width: 38px !important; height: 38px !important; }
             rgba(0, 208, 255, 0) 100%
         );
         box-shadow:
@@ -256,6 +306,12 @@
             0 0 20px rgba(0, 208, 255, 0.8),
             0 0 48px rgba(0, 208, 255, 0.55);
     }
+            @media (max-width: 480px) {
+            .container {
+                justify-content: center;
+                width: 100%;
+                padding: 10px;
+            }
 </style>
 
 <div style="min-height: 100vh; background: url('{{ asset('theme/images/bggggg.jpg') }}') center/cover no-repeat; padding: 13px 0 40px;">
@@ -299,7 +355,7 @@
         </div>
         <!-- Activity Sections Banner (أقسام الفعالية) -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="align-items: center;">
                 <div class="activity-sections">
                     <div class="activity-sections-title">أقسام الفعاليات</div>
 
@@ -394,35 +450,35 @@
 
                     <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center; padding: 8px 6px 2px;">
                         @php($sponsorLogo = asset('theme/images/acw-ic-white.png'))
-                            <div style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
+                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
+                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
                                     <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
                                 </div>
-                                <div style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
+                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
                                     Sponsor 1
                                 </div>
                             </div>
-                            <div style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
+                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
+                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
                                     <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
                                 </div>
-                                <div style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
+                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
                                     Sponsor 2
                                 </div>
                             </div>
-                            <div style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
+                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
+                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
                                     <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
                                 </div>
-                                <div style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
+                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
                                     Sponsor 3
                                 </div>
                             </div>
-                            <div style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
+                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
+                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
                                     <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
                                 </div>
-                                <div style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
+                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
                                     Sponsor 4
                                 </div>
                             </div>
@@ -434,22 +490,22 @@
                         </div>
                     </div>
                     <div style="max-width: 800px; margin: 14px auto 0;">
-                        <div style="display:flex; align-items:stretch; justify-content:center; flex-wrap:wrap; gap: 12px;">
-                            <div style="min-width: 220px; flex: 1 1 220px; display:flex; align-items:center; gap: 10px; text-align:right; direction: rtl;">
+                        <div class="acw-info-row" style="display:flex; align-items:stretch; justify-content:center; flex-wrap:wrap; gap: 12px;">
+                            <div class="acw-info-item" style="min-width: 220px; flex: 1 1 220px; display:flex; align-items:center; gap: 10px; text-align:right; direction: rtl;">
                                 <img src="{{ asset('theme/images/date.png') }}" alt="Date" style="width: 45px; height: 45px; object-fit: contain;">
-                                <div style="color: rgba(255,255,255,0.96); font-weight: 300; line-height: 1.25; font-size: 24px; font-family: 'DINNextLTArabic', sans-serif;">
+                                <div class="acw-info-text" style="color: rgba(255,255,255,0.96); font-weight: 300; line-height: 1.25; font-size: 24px; font-family: 'DINNextLTArabic', sans-serif;">
                                      <span style="font-weight: 300;">١١-١٢-١٣ مايو ٢٠٢٦</span>
                                 </div>
                             </div>
-                            <div style="min-width: 220px; flex: 1 1 220px; display:flex; align-items:center; gap: 10px; text-align:right; direction: rtl;">
+                            <div class="acw-info-item" style="min-width: 220px; flex: 1 1 220px; display:flex; align-items:center; gap: 10px; text-align:right; direction: rtl;">
                                 <img src="{{ asset('theme/images/venue.png') }}" alt="Venue" style="width: 50px; height: 50px; object-fit: contain;">
-                                <div style="color: rgba(255,255,255,0.96); font-weight: 300; line-height: 1.25; font-size: 24px; font-family: 'DINNextLTArabic', sans-serif;">
+                                <div class="acw-info-text" style="color: rgba(255,255,255,0.96); font-weight: 300; line-height: 1.25; font-size: 24px; font-family: 'DINNextLTArabic', sans-serif;">
                                     <span style="font-weight: 300;">قاعــــة ظفـــــار</span>
                                 </div>
                             </div>
-                            <div style="min-width: 220px; flex: 1 1 220px; display:flex; align-items:center; gap: 10px; text-align:right; direction: rtl;">
+                            <div class="acw-info-item" style="min-width: 220px; flex: 1 1 220px; display:flex; align-items:center; gap: 10px; text-align:right; direction: rtl;">
                                 <img src="{{ asset('theme/images/time.png') }}" alt="Time" style="width: 45px; height: 45px; object-fit: contain;">
-                                <div style="color: rgba(255,255,255,0.96); font-weight: 300; line-height: 1.25; font-size: 24px; font-family: 'DINNextLTArabic', sans-serif;">
+                                <div class="acw-info-text" style="color: rgba(255,255,255,0.96); font-weight: 300; line-height: 1.25; font-size: 24px; font-family: 'DINNextLTArabic', sans-serif;">
                                     <span style="font-weight: 300;">٩ صبــاحا - ٢ مســـاء</span>
                                 </div>
                             </div>
