@@ -75,6 +75,12 @@
         margin-bottom: 1px;
     }
 
+        .cert_part11 {
+        margin-top: 2px;
+        font-size: 20px;
+        margin-bottom: 1.5px;
+    }
+
     .cert_part {
         color: #135f9e;
         margin-top: 0.5px;
@@ -121,7 +127,7 @@
     <div class="cert_details">
         <p class="cert_header">شهــادة مـشــــاركــة</p>
         <p class="cert_header1">CERTIFICATE OF PARTICIPATION</p>
-        <p class="cert_part1">This certificate is awarded to       -       تمنح هذه الشهادة لـ</p><br>
+        <p class="cert_part11">This certificate is awarded to       -       تمنح هذه الشهادة لـ</p>
         <p class="cert_name" dir="rtl">{{ $survey_result->participant_name }}</p>
         <p class="cert_part1">for his\her participation in<span>       </span>-<span>       </span>لمشــاركتهـ/ـا الفعّـالة في </p>
         <div class="cert_title">{{ $survey->title }}</div>
