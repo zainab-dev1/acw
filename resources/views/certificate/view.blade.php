@@ -34,7 +34,7 @@
         text-align: center;
         width: 100%;
         margin-top: 100px;
-        margin-bottom: 1px;
+        margin-bottom: 0.5px;
     }
     .cert_header {
 
