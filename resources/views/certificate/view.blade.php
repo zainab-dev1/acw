@@ -106,7 +106,7 @@
         <p class="cert_header1">CERTIFICATE OF PARTICIPATION</p>
         <p class="cert_part1">This certificate is awarded to       -       تمنح هذه الشهادة لـ</p>
         <p class="cert_name" dir="rtl">{{ $survey_result->participant_name }}</p>
-        <p class="cert_part1">for his\her participation in<span>       </span>-<span>       </span>لحضـورهـ/ـا الفعّـال في </p>
+        <p class="cert_part1">for his\her participation in<span>       </span>-<span>       </span>لمشــاركتهـ/ـا الفعّـالة في </p>
         <div class="cert_title">{{ $survey->title }}</div>
         @php
             $fromDate = $survey->training_date_from
@@ -126,11 +126,11 @@
 
         @if($fromDate)
             @if($isMultiDay)
-                <p class="cert_date" style="dir:rtl;">التي اقيمـت من {{ $fromAr }} إلى {{ $toAr }} بفـرع الجامعة </p>
-                <p class="cert_date">Held from {{ $fromEn }} to {{ $toEn }} at UTAS-Salalah</p>
+                <p class="cert_date" style="dir:rtl;">التي اقيمـت من {{ $fromAr }} إلى {{ $toAr }} بفـرع الجامعة ضمن فعاليات أسبوع الإبداع الأكاديمي </p>
+                <p class="cert_date">Held from {{ $fromEn }} to {{ $toEn }} at UTAS-Salalah As part of the Academic Creativity Week activities</p>
             @else
-                <p class="cert_date" style="dir:rtl;">التي اقيمـت في {{ $fromAr }} بفـرع الجامعة </p>
-                <p class="cert_date">Held on {{ $fromEn }} at UTAS-Salalah</p>
+                <p class="cert_date" style="dir:rtl;">التي اقيمـت في {{ $fromAr }}  بفـرع الجامعة ضمن فعاليات أسبوع الإبداع الأكاديمي </p>
+                <p class="cert_date">Held on {{ $fromEn }} at UTAS-Salalah As part of the Academic Creativity Week activities.</p>
             @endif
         @endif
         <br>

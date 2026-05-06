@@ -99,6 +99,9 @@ class ActivityController extends Controller
         // Feedback button visibility (optional)
         $data['has_feedback'] = (int)($request->input('has_feedback', 1) ?? 1);
 
+        // Issue certificate after feedback? (optional)
+        $data['has_certificate'] = (int)($request->input('has_certificate', 1) ?? 1);
+
         $activity = Activity::create($data);
 
         // Public details files (optional, up to 2)
@@ -168,6 +171,9 @@ class ActivityController extends Controller
 
         // Feedback button visibility (optional)
         $data['has_feedback'] = (int)($request->input('has_feedback', 1) ?? 1);
+
+        // Issue certificate after feedback? (optional)
+        $data['has_certificate'] = (int)($request->input('has_certificate', 1) ?? 1);
 
         $survey->update($data);
 
@@ -316,6 +322,8 @@ class ActivityController extends Controller
     {
         $attendance = EventAttendance::findOrFail($request->attendance_id);
 
+        $survey = Activity::find($id);
+
         if ($attendance) {
 
             $survey_result = EventResult::where('attendance_id', $attendance->id)->first();
@@ -329,15 +337,22 @@ class ActivityController extends Controller
 
                 $createdResult = EventResult::create($request->all());
 
-                // Issue certificate only AFTER feedback submission
-                if (!empty($createdResult->email)) {
-                    Mail::to($createdResult->email)->send(new CertificateMail($createdResult));
+                $shouldIssueCertificate = $survey && (int)($survey->has_certificate ?? 1) === 1;
+
+                if ($shouldIssueCertificate) {
+                    // Issue certificate only AFTER feedback submission
+                    if (!empty($createdResult->email)) {
+                        Mail::to($createdResult->email)->send(new CertificateMail($createdResult));
+                    }
+
+                    Alert::success('Thank you for your response', 'Your Response has been submitted. Your certificate has been issued.');
+
+                    // Show certificate PDF in browser
+                    return redirect()->route('certificate.view', $createdResult->id);
                 }
 
-                Alert::success('Thank you for your response', 'Your Response has been submitted. Your certificate has been issued.');
-
-                // Show certificate PDF in browser
-                return redirect()->route('certificate.view', $createdResult->id);
+                Alert::success('شكراً لتقييمكم', 'تم استلام تقييمكم بنجاح');
+                return redirect()->route('activity.public');
             } else {
                 Alert::error('Error', 'Your Have already submitted your feedback');
             }

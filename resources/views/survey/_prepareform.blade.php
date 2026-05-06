@@ -54,6 +54,12 @@
     <small class="text-muted">If closed, the public page will not show the Feedback button (even if registration is open).</small>
 </div>
 
+<div class="form-group">
+    <label for="has_certificate">Issue certificate after feedback?</label>
+    {{ Form::select('has_certificate', [1 => 'Yes', 0 => 'No'], null, ['class' => 'form-control']) }}
+    <small class="text-muted">If enabled, a certificate will be issued after feedback submission. If disabled, users will only see a thank-you message.</small>
+</div>
+
 <hr>
 
 <div class="form-group">

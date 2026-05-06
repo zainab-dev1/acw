@@ -19,6 +19,14 @@ class Activity extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'has_attachment' => 'boolean',
+        'has_feedback' => 'boolean',
+        'has_certificate' => 'boolean',
+        'has_participant_limit' => 'boolean',
+        'is_open' => 'boolean',
+    ];
+
     // Allow guarding everything except id; guarded already covers it.
     // public_file_1_path/public_file_2_path are stored on the events table.
 

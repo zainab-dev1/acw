@@ -237,6 +237,8 @@ class EventController extends Controller
     {
         $attendance = EventAttendance::findOrFail($request->attendance_id);
 
+        $survey = Event::find($id);
+
         if ($attendance) {
 
             $survey_result = EventResult::where('attendance_id',$attendance->id)->first();
@@ -248,9 +250,20 @@ class EventController extends Controller
                 $request['participant_name'] = $attendance->fullname_en;
                 $request['participant_name_ar'] = $attendance->fullname_ar ?? null;
 
-                $survey_submitted = EventResult::create($request->all());
+                $createdResult = EventResult::create($request->all());
 
-                Alert::success('Thank you for your response','Your Response has been submitted');
+                $shouldIssueCertificate = $survey && (int)($survey->has_certificate ?? 1) === 1;
+
+                if ($shouldIssueCertificate) {
+                    if (!empty($createdResult->email)) {
+                        Mail::to($createdResult->email)->send(new CertificateMail($createdResult));
+                    }
+
+                    Alert::success('Thank you for your response', 'Your Response has been submitted. Your certificate has been issued.');
+                    return redirect()->route('certificate.view', $createdResult->id);
+                }
+
+                Alert::success('شكراً لتقييمكم', 'تم استلام تقييمكم بنجاح');
             } else {
                 Alert::error('Error','Your Have already submitted your feedback');
 
@@ -350,6 +363,9 @@ class EventController extends Controller
 
     public function postattendance(AttendanceRequest $request, $event_id)
     {
+        $event = Event::find($event_id);
+        $hasCertificate = $event && (int)($event->has_certificate ?? 1) === 1;
+
         $event_attendance = EventAttendance::where('survey_id',$event_id)->where('civil_no',$request->civil_no)->first();
 
         if ($event_attendance) {
@@ -361,8 +377,11 @@ class EventController extends Controller
                 'survey_id' => $event_attendance->survey_id
             ]);
 
-            // Attendance updated. Certificate will be issued only after feedback is submitted.
-            toast('Thank you, attendance updated. Please submit feedback to receive the certificate.','success');
+            if ($hasCertificate) {
+                toast('Thank you, attendance updated. Please submit feedback to receive the certificate.','success');
+            } else {
+                toast('Thank you, attendance updated. Please submit feedback.','success');
+            }
 
             return redirect()->route('event.feedback', $event_id);
 
@@ -376,8 +395,11 @@ class EventController extends Controller
                 'survey_id' => $event_att->survey_id
             ]);
 
-            // Attendance recorded. Certificate will be issued only after feedback is submitted.
-            toast('Thank you, you have attended. Please submit feedback to receive the certificate.','success');
+            if ($hasCertificate) {
+                toast('Thank you, you have attended. Please submit feedback to receive the certificate.','success');
+            } else {
+                toast('Thank you, you have attended. Please submit feedback.','success');
+            }
 
             return redirect()->route('event.feedback', $event_id);
 

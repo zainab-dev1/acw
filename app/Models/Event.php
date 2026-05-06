@@ -17,6 +17,14 @@ class Event extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'has_attachment' => 'boolean',
+        'has_feedback' => 'boolean',
+        'has_certificate' => 'boolean',
+        'has_participant_limit' => 'boolean',
+        'is_open' => 'boolean',
+    ];
+
     public function type()
     {
         return $this->hasOne(EventType::class,'id','survey_type_id');
