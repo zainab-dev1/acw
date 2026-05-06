@@ -121,7 +121,7 @@
     <div class="cert_details">
         <p class="cert_header">شهــادة مـشــــاركــة</p>
         <p class="cert_header1">CERTIFICATE OF PARTICIPATION</p>
-        <p class="cert_part1">This certificate is awarded to       -       تمنح هذه الشهادة لـ</p>
+        <p class="cert_part1">This certificate is awarded to       -       تمنح هذه الشهادة لـ</p><br>
         <p class="cert_name" dir="rtl">{{ $survey_result->participant_name }}</p>
         <p class="cert_part1">for his\her participation in<span>       </span>-<span>       </span>لمشــاركتهـ/ـا الفعّـالة في </p>
         <div class="cert_title">{{ $survey->title }}</div>
