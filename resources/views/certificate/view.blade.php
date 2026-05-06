@@ -90,6 +90,7 @@
         word-wrap: break-word;
     }
     .cert_date {
+        margin-top: -1px;
         font-size: 20px;
     }
     .assignatory {
