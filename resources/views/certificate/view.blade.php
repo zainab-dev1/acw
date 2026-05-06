@@ -90,8 +90,25 @@
         word-wrap: break-word;
     }
     .cert_date {
-        margin-top: -3px;
+        margin: 0;
+        padding: 0;
         font-size: 19px;
+        line-height: 1.15;
+    }
+
+    /* Add a small controlled gap only between consecutive lines */
+    .cert_date + .cert_date { margin-top: 2px; }
+
+    /* Keep <sup> from increasing line height noticeably */
+    .cert_date sup {
+        font-size: 65%;
+        line-height: 0;
+        vertical-align: super;
+    }
+
+    .cert_date_ar {
+        direction: rtl;
+        unicode-bidi: bidi-override;
     }
     .assignatory {
         margin-top: 0.1px;
@@ -127,11 +144,11 @@
         @if($fromDate)
             @if($isMultiDay)
                 <p class="cert_date">As part of the 1<sup>st</sup> Academic Creativity Week - ضمن فعاليات أسبوع الإبداع الأكاديمي الأول </p>
-                <p class="cert_date" style="dir:rtl;">التي اقيمـت من {{ $fromAr }} إلى {{ $toAr }} بفـرع الجامعة </p>
+                <p class="cert_date cert_date_ar" dir="rtl">التي اقيمـت من {{ $fromAr }} إلى {{ $toAr }} بفـرع الجامعة </p>
                 <p class="cert_date">Held from {{ $fromEn }} to {{ $toEn }} at UTAS-Salalah</p>
             @else
                 <p class="cert_date">As part of the 1<sup>st</sup> Academic Creativity Week - ضمن فعاليات أسبوع الإبداع الأكاديمي الأول </p>
-                <p class="cert_date" style="dir:rtl;">التي اقيمـت في {{ $fromAr }} بفـرع الجامعة </p>
+                <p class="cert_date cert_date_ar" dir="rtl">التي اقيمـت في {{ $fromAr }} بفـرع الجامعة </p>
                 <p class="cert_date">Held on {{ $fromEn }} at UTAS-Salalah</p>
             @endif
         @endif
