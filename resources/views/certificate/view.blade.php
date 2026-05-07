@@ -32,7 +32,7 @@
         position: static;
         /*top: 110px;*/
         text-align: center;
-        width: 100%;
+        width: 350px;
         margin-top: 130px;
         margin-bottom: 2px;
     }
