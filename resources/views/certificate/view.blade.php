@@ -29,7 +29,7 @@
     }
 
     .cert_details {
-        position: static;
+        /*position: static;*/   
         /*top: 110px;*/
         text-align: center;
         width: 100%;
