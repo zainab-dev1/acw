@@ -149,10 +149,10 @@
         @if($fromDate)
             @if($isMultiDay)
                 <p class="cert_date">ضمن فعاليات أسبوع الإبداع الأكاديمي الأول </p>
-                <p class="cert_date">التي اقيمـت في ١١-١٣ مايو٢٠٢٦ بفرع الجامعة</p>
+                <p class="cert_date cert_date_ar" dir="rtl">التي اقيمـت في ١١ - ١٣ مايو بفرع الجامعة</p>
             @else
                 <p class="cert_date">ضمن فعاليات أسبوع الإبداع الأكاديمي الأول </p>
-                <p class="cert_date">التي اقيمـت في ١١-١٣ مايو٢٠٢٦ بفرع الجامعة</p>
+                <p class="cert_date cert_date_ar" dir="rtl">التي اقيمـت في ١١ - ١٣ مايو بفرع الجامعة</p>
             @endif
         @endif
         <br><br>
