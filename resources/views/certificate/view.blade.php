@@ -39,7 +39,7 @@
     .cert_header {
 
         font-family: DNBold;
-        font-size: 36px;
+        font-size: 42px;
         color: #e16911;
         margin-top: 60px;
         margin-bottom: 5px;
