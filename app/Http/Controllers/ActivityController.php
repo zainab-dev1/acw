@@ -341,9 +341,9 @@ class ActivityController extends Controller
 
                 if ($shouldIssueCertificate) {
                     // Issue certificate only AFTER feedback submission
-                    if (!empty($createdResult->email)) {
-                        Mail::to($createdResult->email)->send(new CertificateMail($createdResult));
-                    }
+                    //if (!empty($createdResult->email)) {
+                        //Mail::to($createdResult->email)->send(new CertificateMail($createdResult));
+                    //}
 
                     Alert::success('Thank you for your response', 'Your Response has been submitted. Your certificate has been issued.');
 

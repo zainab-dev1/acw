@@ -161,18 +161,18 @@
     <table width="90%" border="0">
         <tr>
             <td width="45%" align="center">
-                <img style="width: 150px; float: center; margin-left: 170px; margin-top: -6px; z-index: -10px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Signature.png'))) }}" alt="">
+                <img style="width: 150px; float: center; margin-left: 170px; margin-top: -6px; z-index: -10px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/Dr_Majdi_Signature.png'))) }}" alt="">
             </td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td width="45%" align="center">
-                <p>د. أحمد بن علي الشحري<br/>
-             مساعد رئيس الجامعة بصلالة</p>
+                <p>د. مجدي بن محمد بيت علي سليمان<br/>
+             نائب مساعد الرئيس للشؤون الأكاديمية</p>
             </td>
             <td width="25%" align="center">
-               <img style="width: 160px; float: center; margin-top:-44px; margin-left:-120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Stamp.png'))) }}" alt="">
+               <img style="width: 160px; float: center; margin-top:-44px; margin-left:-120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/stamp.png'))) }}" alt="">
             </td>
             <td width="30%" align="center">
             </td>
