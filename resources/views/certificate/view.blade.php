@@ -63,7 +63,7 @@
     }
     .cert_name {
         font-family: DNBold;
-        color: #e16911;
+        color: #065ca4;
         font-size: 30px;
         margin-top: -2px;
         margin-bottom: 4px;
