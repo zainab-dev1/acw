@@ -99,7 +99,7 @@
                                             <i class="ti-unlock"></i> Open
                                         </a>
                                         @endif
-                                        <a href="{{ route('activity.mean',$survey->id) }}" class="btn btn-info btn-sm" style="border-radius: 6px; display: none;">
+                                        <a href="{{ route('activity.mean',$survey->id) }}" class="btn btn-info btn-sm" style="border-radius: 6px;">
                                             <i class="ti-bar-chart"></i> Results
                                         </a>
                                         <a href="{{ route('activity.participants', $survey->id) }}" class="btn btn-warning btn-sm" style="border-radius: 6px;">

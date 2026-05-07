@@ -442,15 +442,53 @@ class ActivityController extends Controller
     {
         $survey = Activity::findOrFail($id);
 
+        $survey_result = \DB::table('event_results')
+            ->where('survey_id', $id)
+            ->select(\DB::raw(" 
+                count(id) as totalres,
+                count(if(q1 = 1,1, NULL)) as q1_1,count(if(q1 = 2,1, NULL)) as q1_2,count(if(q1 = 3,1, NULL)) as q1_3,count(if(q1 = 4,1, NULL)) as q1_4,count(if(q1 = 5,1, NULL)) as q1_5,
+                count(if(q2 = 1,1, NULL)) as q2_1,count(if(q2 = 2,1, NULL)) as q2_2,count(if(q2 = 3,1, NULL)) as q2_3,count(if(q2 = 4,1, NULL)) as q2_4,count(if(q2 = 5,1, NULL)) as q2_5,
+                count(if(q3 = 1,1, NULL)) as q3_1,count(if(q3 = 2,1, NULL)) as q3_2,count(if(q3 = 3,1, NULL)) as q3_3,count(if(q3 = 4,1, NULL)) as q3_4,count(if(q3 = 5,1, NULL)) as q3_5,
+                count(if(q4 = 1,1, NULL)) as q4_1,count(if(q4 = 2,1, NULL)) as q4_2,count(if(q4 = 3,1, NULL)) as q4_3,count(if(q4 = 4,1, NULL)) as q4_4,count(if(q4 = 5,1, NULL)) as q4_5,
+                count(if(q5 = 1,1, NULL)) as q5_1,count(if(q5 = 2,1, NULL)) as q5_2,count(if(q5 = 3,1, NULL)) as q5_3,count(if(q5 = 4,1, NULL)) as q5_4,count(if(q5 = 5,1, NULL)) as q5_5,
+                count(if(q6 = 1,1, NULL)) as q6_1,count(if(q6 = 2,1, NULL)) as q6_2,count(if(q6 = 3,1, NULL)) as q6_3,count(if(q6 = 4,1, NULL)) as q6_4,count(if(q6 = 5,1, NULL)) as q6_5,
+                count(if(q7 = 1,1, NULL)) as q7_1,count(if(q7 = 2,1, NULL)) as q7_2,count(if(q7 = 3,1, NULL)) as q7_3,count(if(q7 = 4,1, NULL)) as q7_4,count(if(q7 = 5,1, NULL)) as q7_5,
+                count(if(q8 = 1,1, NULL)) as q8_1,count(if(q8 = 2,1, NULL)) as q8_2,count(if(q8 = 3,1, NULL)) as q8_3,count(if(q8 = 4,1, NULL)) as q8_4,count(if(q8 = 5,1, NULL)) as q8_5,
+                count(if(q9 = 1,1, NULL)) as q9_1,count(if(q9 = 2,1, NULL)) as q9_2,count(if(q9 = 3,1, NULL)) as q9_3,count(if(q9 = 4,1, NULL)) as q9_4,count(if(q9 = 5,1, NULL)) as q9_5,
+                count(if(q10 = 1,1, NULL)) as q10_1,count(if(q10 = 2,1, NULL)) as q10_2,count(if(q10 = 3,1, NULL)) as q10_3,count(if(q10 = 4,1, NULL)) as q10_4,count(if(q10 = 5,1, NULL)) as q10_5
+            "))
+            ->first();
+
+        if (!$survey_result || (int)$survey_result->totalres <= 0) {
+            Alert::error('No Respondents', 'Cant Generate Report');
+            return redirect()->route('activity.index');
+        }
+
+        $survey_comments = \DB::table('event_results')
+            ->select('comments')
+            ->where('survey_id', $id)
+            ->whereNotNull('comments')
+            ->where('comments', '!=', '')
+            ->get();
+
         if ($survey->survey_type_id == 1) {
-            return view('survey.form_mean_cts')->with('survey', $survey);
+            return view('survey.form_mean_cts')
+                ->with('survey', $survey)
+                ->with('survey_result', $survey_result)
+                ->with('survey_comments', $survey_comments);
         }
 
         if ($survey->survey_type_id == 2) {
-            return view('survey.form_mean_iv')->with('survey', $survey);
+            return view('survey.form_mean_iv')
+                ->with('survey', $survey)
+                ->with('survey_result', $survey_result)
+                ->with('survey_comments', $survey_comments);
         }
 
-        return view('survey.form_mean_gl')->with('survey', $survey);
+        return view('survey.form_mean_gl')
+            ->with('survey', $survey)
+            ->with('survey_result', $survey_result)
+            ->with('survey_comments', $survey_comments);
     }
 
     public function publicQRCodes()
