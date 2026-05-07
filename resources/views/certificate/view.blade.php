@@ -172,7 +172,7 @@
              مساعد رئيس الجامعة بصلالة</p>
             </td>
             <td width="25%" align="center">
-               <img style="width: 160px; float: center; margin-top:-44px; margin-left:120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Stamp.png'))) }}" alt="">
+               <img style="width: 160px; float: center; margin-top:-44px; margin-left:100px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Stamp.png'))) }}" alt="">
             </td>
             <td width="30%" align="center">
             </td>
