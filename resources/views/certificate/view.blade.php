@@ -172,7 +172,7 @@
              نائب مساعد الرئيس للشؤون الأكاديمية</p>
             </td>
             <td width="25%" align="center">
-               <img style="width: 160px; float: center; margin-top:-45px; margin-left:120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/stamp.png'))) }}" alt="">
+               <img style="width: 160px; float: center; margin-top:-49px; margin-left:120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/stamp.png'))) }}" alt="">
             </td>
             <td width="30%" align="center">
             </td>
