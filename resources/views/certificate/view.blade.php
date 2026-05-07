@@ -29,7 +29,7 @@
     }
 
     .cert_details {
-        /*position: static;*/   
+        position: static;
         /*top: 110px;*/
         text-align: center;
         width: 100%;
@@ -42,7 +42,7 @@
         font-size: 36px;
         color: #e16911;
         margin-top: 60px;
-        margin-bottom: 1px;
+        margin-bottom: 5px;
     }
     .cert_header1 {
 
@@ -72,7 +72,7 @@
     .cert_part1 {
         margin-top: 2px;
         font-size: 20px;
-        margin-bottom: 1px;
+        margin-bottom: 2px;
     }
 
         .cert_part11 {
@@ -125,10 +125,10 @@
 <body>
 <div>
     <div class="cert_details">
-        <p class="cert_header">شهــادة مـشــــاركــة</p>
+        <p class="cert_header">شهـــادة مـشـــــاركــة</p>
         <p class="cert_part11"> تمنح هذه الشهادة لـ</p>
         <p class="cert_name" dir="rtl">{{ $survey_result->participant_name }}</p>
-        <p class="cert_part"> لمشــاركتهـ/ـا الفعّـالة ضمـن فعاليات أسبـوع الإبـداع الأكـاديمي الأول في </p>
+        <p class="cert_part1"> لمشــاركتهـ/ـا الفعّـالة في </p>
         <div class="cert_title">{{ $survey->title }}</div>
         @php
             $fromDate = $survey->training_date_from
@@ -148,11 +148,11 @@
 
         @if($fromDate)
             @if($isMultiDay)
+                <p class="cert_date">ضمن فعاليات أسبوع الإبداع الأكاديمي الأول </p>
                 <p class="cert_date cert_date_ar" dir="rtl">التي اقيمـت من {{ $fromAr }} إلى {{ $toAr }} بفـرع الجامعة </p>
-                <p class="cert_date">مع تمنياتنا لكم بدوام التوفيق والنجاح</p>
             @else
+                <p class="cert_date">ضمن فعاليات أسبوع الإبداع الأكاديمي الأول </p>
                 <p class="cert_date cert_date_ar" dir="rtl">التي اقيمـت في {{ $fromAr }} بفـرع الجامعة </p>
-                <p class="cert_date">مع تمنياتنا لكم بدوام التوفيق والنجاح</p>
             @endif
         @endif
         <br>
