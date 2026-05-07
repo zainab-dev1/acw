@@ -155,7 +155,7 @@
                 <p class="cert_date cert_date_ar" dir="rtl">التي اقيمـت في {{ $fromAr }} بفـرع الجامعة </p>
             @endif
         @endif
-        <br>
+        <br><br>
     </div>
     <div class="assignatory">
     <table width="90%" border="0">
@@ -172,7 +172,7 @@
              مساعد رئيس الجامعة بصلالة</p>
             </td>
             <td width="25%" align="center">
-               <img style="width: 160px; float: center; margin-top:-41px; margin-left:120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Stamp.png'))) }}" alt="">
+               <img style="width: 160px; float: center; margin-top:-38px; margin-left:120px;" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/AVC-Stamp.png'))) }}" alt="">
             </td>
             <td width="30%" align="center">
             </td>
