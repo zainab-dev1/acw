@@ -27,7 +27,7 @@
                     </strong>
                 </h5>
 
-                <p><strong>Program Title (<span dir="rtl">العنوان</span>) : {{ $survey->title ?? "" }}</strong></p>
+                <p><strong>Event/Competition Title (<span dir="rtl">عنوان الفعالية/المسابقة</span>) : {{ $survey->title ?? "" }}</strong></p>
                 <p><strong>Location (<span dir="rtl">الموقع</span>) : {{ $survey->location ?? "" }}</strong></p>
                 <p><strong>Date (<span dir="rtl">التاريخ</span>) : {{ \Carbon\Carbon::parse($survey->training_date)->format('d-M-Y') }}</strong></p>
 
@@ -49,8 +49,8 @@
                     <tbody>
                         <tr>
                             <td class="text-center">1</td>
-                            <td>The choice of topic was appropriate. <br />
-                                <p align="right"><span dir="rtl">كان اختيار الموضوع مناسبًا</span></p>
+                            <td>The event was well-organized and clear. <br />
+                                <p align="right"><span dir="rtl">كان تنظيم الفعالية جيدًا وواضحًا</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q1_1 }}</td>
                             <td class="text-center">{{ $survey_result->q1_2 }}</td>
@@ -66,8 +66,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">2</td>
-                            <td>The time allocated for the training was adequate.<br />
-                                <p align="right"><span dir="rtl" align="right">كان الوقت المخصص للتدريب كافياً</span></p>
+                            <td>The event adhered to the scheduled time.<br />
+                                <p align="right"><span dir="rtl" align="right">تم الالتزام بالوقت المحدد للفعالية</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q2_1 }}</td>
                             <td class="text-center">{{ $survey_result->q2_2 }}</td>
@@ -83,8 +83,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">3</td>
-                            <td>The training covered what I was expecting.<br />
-                                <p align="right"><span dir="rtl" align="right">غطى التدريب ما كنت أتوقعه</span></p>
+                            <td>The instructions provided to participants were clear and easy to understand.<br />
+                                <p align="right"><span dir="rtl" align="right">كانت التعليمات المقدمة للمشاركين واضحة وسهلة الفهم</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q3_1 }}</td>
                             <td class="text-center">{{ $survey_result->q3_2 }}</td>
@@ -100,8 +100,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">4</td>
-                            <td>The training was well organized.<br />
-                                <p align="right"><span dir="rtl" align="right">كان التدريب منظما بشكل جيد</span></p>
+                            <td>The organizing team was cooperative and responsive.<br />
+                                <p align="right"><span dir="rtl" align="right">كان فريق التنظيم متعاونًا وسريع الاستجابة</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q4_1 }}</td>
                             <td class="text-center">{{ $survey_result->q4_2 }}</td>
@@ -117,8 +117,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">5</td>
-                            <td>The training was properly delivered.<br />
-                                <p align="right"><span dir="rtl" align="right">تم تقديم التدريب بشكل صحيح</span></p>
+                            <td>The idea of the competition/event was innovative and enjoyable.<br />
+                                <p align="right"><span dir="rtl" align="right">كانت فكرة المسابقة/الفعالية مبتكرة وممتعة</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q5_1 }}</td>
                             <td class="text-center">{{ $survey_result->q5_2 }}</td>
@@ -134,8 +134,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">6</td>
-                            <td>The knowledge I gained from this training will be useful for my career<br />
-                                <p align="right"><span dir="rtl" align="right">ستكون المعرفة التي اكتسبتها من هذا التدريب مفيدة لحياتي المهنية</span></p>
+                            <td>The level of questions or challenges was appropriate.<br />
+                                <p align="right"><span dir="rtl" align="right">مستوى الأسئلة أو التحديات كان مناسبًا</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q6_1 }}</td>
                             <td class="text-center">{{ $survey_result->q6_2 }}</td>
@@ -151,8 +151,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">7</td>
-                            <td>I got Opportunity to ask questions for clarification.<br />
-                                <p align="right"><span dir="rtl" align="right">وفر المتحدث فرصة لطرح الأسئلة بغرض التوضيح.</span></p>
+                            <td>The event helped increase my knowledge or skills.<br />
+                                <p align="right"><span dir="rtl" align="right">ساهمت الفعالية في زيادة معرفتي أو مهاراتي</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q7_1 }}</td>
                             <td class="text-center">{{ $survey_result->q7_2 }}</td>
@@ -168,8 +168,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">8</td>
-                            <td>The speaker stimulated my interest in the topic<br />
-                                <p align="right"><span dir="rtl" align="right">أثار المتحدث اهتمامي بالموضوع.</span></p>
+                            <td>The activities were varied and not boring.<br />
+                                <p align="right"><span dir="rtl" align="right">كانت الأنشطة متنوعة وغير مملة</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q8_1 }}</td>
                             <td class="text-center">{{ $survey_result->q8_2 }}</td>
@@ -185,8 +185,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">9</td>
-                            <td>The speaker provided clear answers to my questions<br />
-                                <p align="right"><span dir="rtl" align="right">قدم المتحدث إجابات واضحة على أسئلتي </span></p>
+                            <td>The atmosphere of the event was positive and motivating.<br />
+                                <p align="right"><span dir="rtl" align="right">كانت أجواء الفعالية إيجابية ومحفزة</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q9_1 }}</td>
                             <td class="text-center">{{ $survey_result->q9_2 }}</td>
@@ -202,8 +202,8 @@
                         </tr>
                         <tr>
                             <td class="text-center">10</td>
-                            <td>The choice of venue was appropriate<br />
-                                <p align="right"><span dir="rtl" align="right">كان اختيار المكان مناسبا</span></p>
+                            <td>I am overall satisfied with this event.<br />
+                                <p align="right"><span dir="rtl" align="right">أنا راضٍ بشكل عام عن هذه الفعالية</span></p>
                             </td>
                             <td class="text-center">{{ $survey_result->q10_1 }}</td>
                             <td class="text-center">{{ $survey_result->q10_2 }}</td>
@@ -229,9 +229,9 @@
                         </tr>
                         <tr>
                             <td colspan="8">
-                                <p align="left">Kindly give any suggestions to improve future communications across the campus.</p>
+                                <p align="left">What can be improved in future events?</p>
                                 <p>
-                                    <span align="right" dir="rtl">يرجى إعطاء إي أقتراحات لتحسين التواصل في جميع أنحاء حرم الكليه مستقبلا.</span>
+                                    <span align="right" dir="rtl">ما الذي يمكن تحسينه في الفعاليات القادمة؟</span>
                                 </p>
 
                                 <div class="text-center">

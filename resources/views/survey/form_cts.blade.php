@@ -28,7 +28,7 @@
                     <div class="event-details-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 12px; margin-bottom: 30px; color: white;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                             <div>
-                                <strong style="font-size: 14px; opacity: 0.9;">Program Title / العنوان:</strong>
+                                <strong style="font-size: 14px; opacity: 0.9;">Event/Competition Title / عنوان الفعالية/المسابقة:</strong>
                                 <p style="margin: 5px 0 0 0; font-size: 16px;">{{ $survey->title ?? "" }}</p>
                             </div>
                             <div>
@@ -94,8 +94,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">1</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The choice of topic was appropriate.
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كان اختيار الموضوع مناسبًا</span></p>
+                                        The event was well-organized and clear.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كان تنظيم الفعالية جيدًا وواضحًا</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q1" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q1" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -106,8 +106,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">2</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The time allocated for the training was adequate.
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كان الوقت المخصص للتدريب كافياً</span></p>
+                                        The event adhered to the scheduled time.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">تم الالتزام بالوقت المحدد للفعالية</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q2" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q2" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -118,8 +118,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">3</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The training covered what I was expecting.
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">غطى التدريب ما كنت أتوقعه</span></p>
+                                        The instructions provided to participants were clear and easy to understand.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كانت التعليمات المقدمة للمشاركين واضحة وسهلة الفهم</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q3" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q3" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -130,8 +130,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">4</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The training was well organized.
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كان التدريب منظما بشكل جيد</span></p>
+                                        The organizing team was cooperative and responsive.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كان فريق التنظيم متعاونًا وسريع الاستجابة</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q4" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q4" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -142,8 +142,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">5</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The training was properly delivered.
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">تم تقديم التدريب بشكل صحيح</span></p>
+                                        The idea of the competition/event was innovative and enjoyable.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كانت فكرة المسابقة/الفعالية مبتكرة وممتعة</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q5" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q5" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -154,8 +154,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">6</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The knowledge I gained from this training will be useful for my career
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">ستكون المعرفة التي اكتسبتها من هذا التدريب مفيدة لحياتي المهنية</span></p>
+                                        The level of questions or challenges was appropriate.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">مستوى الأسئلة أو التحديات كان مناسبًا</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q6" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q6" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -166,8 +166,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">7</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        I got Opportunity to ask questions for clarification.
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">وفر المتحدث فرصة لطرح الأسئلة بغرض التوضيح</span></p>
+                                        The event helped increase my knowledge or skills.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">ساهمت الفعالية في زيادة معرفتي أو مهاراتي</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q7" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q7" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -178,8 +178,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">8</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The speaker stimulated my interest in the topic
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">أثار المتحدث اهتمامي بالموضوع</span></p>
+                                        The activities were varied and not boring.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كانت الأنشطة متنوعة وغير مملة</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q8" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q8" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -190,8 +190,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">9</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The speaker provided clear answers to my questions
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">قدم المتحدث إجابات واضحة على أسئلتي</span></p>
+                                        The atmosphere of the event was positive and motivating.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كانت أجواء الفعالية إيجابية ومحفزة</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q9" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q9" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -202,8 +202,8 @@
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
                                     <td class="text-center" style="padding: 20px; vertical-align: middle;">10</td>
                                     <td style="padding: 20px; vertical-align: middle;">
-                                        The choice of venue was appropriate
-                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">كان اختيار المكان مناسبا</span></p>
+                                        I am overall satisfied with this event.
+                                        <p align="right" style="margin-top: 8px; color: #64748b;"><span dir="rtl">أنا راضٍ بشكل عام عن هذه الفعالية</span></p>
                                     </td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="1" required name="q10" style="width: 20px; height: 20px; cursor: pointer;"></td>
                                     <td class="text-center" style="padding: 20px;"><input type="radio" value="2" required name="q10" style="width: 20px; height: 20px; cursor: pointer;"></td>
@@ -217,10 +217,10 @@
                                             <i class="ti-comment-alt"></i> Comments / Suggestions
                                         </label>
                                         <p style="color: #64748b; font-size: 14px; margin-bottom: 10px;">
-                                            Kindly give any suggestions to improve future communications across the campus.
+                                            What can be improved in future events?
                                         </p>
                                         <p align="right" style="color: #64748b; font-size: 14px; margin-bottom: 15px;">
-                                            <span dir="rtl">يرجى إعطاء أي اقتراحات لتحسين التواصل في جميع أنحاء حرم الكلية مستقبلاً.</span>
+                                            <span dir="rtl">ما الذي يمكن تحسينه في الفعاليات القادمة؟</span>
                                         </p>
                                         <textarea class="form-control" style="height: 120px; border: 1px solid #e2e8f0; border-radius: 8px;" name="comments" placeholder="Enter your comments here..."></textarea>   
                                     </td>
