@@ -128,7 +128,7 @@
         <p class="cert_header">شهــادة مـشــــاركــة</p>
         <p class="cert_part11"> تمنح هذه الشهادة لـ</p>
         <p class="cert_name" dir="rtl">{{ $survey_result->participant_name }}</p>
-        <p class="cert_part1"> لمشــاركتهـ/ـا الفعّـالة ضمـن فعاليات أسبـوع الإبـداع الأكـاديمي الأول في </p>
+        <p class="cert_part1" dir="rtl"> لمشــاركتهـ/ـا الفعّـالة ضمـن فعاليات أسبـوع الإبـداع الأكـاديمي الأول في </p>
         <div class="cert_title">{{ $survey->title }}</div>
         @php
             $fromDate = $survey->training_date_from
