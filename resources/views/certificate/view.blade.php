@@ -161,7 +161,7 @@
     <table width="90%" border="0">
         <tr>
             <td width="45%" align="center">
-                <img style="width: 150px; float: center; margin-left: 170px; margin-top: -5px; z-index: -10px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/Dr_Majdi_Signature.png'))) }}" alt="">
+                <img style="width: 150px; float: center; margin-left: 170px; margin-top: -15px; z-index: -10px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('theme/images/Dr_Majdi_Signature.png'))) }}" alt="">
             </td>
             <td></td>
             <td></td>
