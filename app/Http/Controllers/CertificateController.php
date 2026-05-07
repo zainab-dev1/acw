@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Event;
 use App\Models\EventResult;
 use Illuminate\Http\Request;
@@ -16,15 +17,24 @@ class CertificateController extends Controller
     public function view($id)
     {
         $survey_result = EventResult::find($id);
+        if (!$survey_result) {
+            Alert::error('Not Found', 'Certificate not found');
+            return redirect()->route('certificate.verify');
+        }
 
-        $survey = Event::find($survey_result->survey_id);
+        // New system uses activities; keep fallback to old events for backward compatibility.
+        $survey = Activity::find($survey_result->survey_id) ?? Event::find($survey_result->survey_id);
+        if (!$survey) {
+            Alert::error('Not Found', 'Activity/Event not found for this certificate');
+            return redirect()->route('certificate.verify');
+        }
 
-        $assignatories = EventAssignatory::find($survey->id);
+        $assignatories = EventAssignatory::where('survey_id', $survey->id)->first();
 
         $qrlink = route('certificate.view',$id);
 
         if (empty($assignatories)) {
-            $assignatories = EventAssignatory::where('is_default',1)->first();
+            $assignatories = EventAssignatory::where('is_default', 1)->first();
         }
         
 /*
@@ -37,9 +47,9 @@ class CertificateController extends Controller
         
         
         
-        $pdf = Pdf::loadView('certificate.view',compact('survey_result','survey','assignatories','qrlink'));
+                $pdf = Pdf::loadView('certificate.view', compact('survey_result', 'survey', 'assignatories', 'qrlink'));
 
-      return $pdf->stream();
+                return $pdf->stream();
     }
 
     public function edit($id)
@@ -52,10 +62,14 @@ class CertificateController extends Controller
     public function update(Request $request, $id)
     {
         $survey_result = EventResult::find($id);
+        if (!$survey_result) {
+            Alert::error('Not Found', 'Certificate not found');
+            return redirect()->route('certificate.list');
+        }
 
         $survey_result->update($request->all());
 
-    return redirect()->route('activity.participants',$survey_result->survey_id);
+        return redirect()->route('activity.participants', $survey_result->survey_id);
     }
 
     public function email($id)
