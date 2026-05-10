@@ -338,7 +338,7 @@ class ActivityController extends Controller
         }
 
         toast('You have not attended', 'error');
-        return redirect()->route('activity.public');
+        return redirect()->route('public.upcoming');
     }
 
     public function formcts($id, EventAttendance $attendance)
@@ -373,7 +373,7 @@ class ActivityController extends Controller
         $survey = Activity::find($id);
         if (!$survey) {
             Alert::error('Error', 'Activity not found');
-            return redirect()->route('activity.public');
+            return redirect()->route('public');
         }
 
         $attendanceId = (int)($request->input('attendance_id', 0) ?? 0);
@@ -403,22 +403,21 @@ class ActivityController extends Controller
 
                     Alert::success('Thank you for your response', 'Your Response has been submitted. Your certificate has been issued.');
 
-                    // Show certificate PDF in browser
-                    return redirect()->route('certificate.view', $createdResult->id);
+                    return redirect()->route('public');
                 }
 
                 Alert::success('شكراً لتقييمكم', 'تم استلام تقييمكم بنجاح');
-                return redirect()->route('activity.public');
+                return redirect()->route('public');
             }
 
             Alert::error('Error', 'Your Have already submitted your feedback');
-            return redirect()->route('activity.public');
+            return redirect()->route('public');
         }
 
         // Public feedback without attendance (new flow)
         if ((int)($survey->has_feedback ?? 1) !== 1 || (int)($survey->is_open ?? 0) !== 1) {
             Alert::error('Error', 'Feedback is closed');
-            return redirect()->route('activity.public');
+            return redirect()->route('public');
         }
 
         if ((int)($survey->allow_public_feedback_without_attendance ?? 0) !== 1) {
@@ -467,7 +466,7 @@ class ActivityController extends Controller
         ]);
 
         Alert::success('شكراً لتقييمكم', 'تم استلام تقييمكم بنجاح');
-        return redirect()->route('activity.public');
+        return redirect()->route('public');
     }
 
     public function attendance($id)
