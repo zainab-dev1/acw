@@ -107,6 +107,8 @@ Route::get('/activity/public/{id}', [ActivityController::class, 'showPublic'])->
 Route::get('/activity/public/feedback/{event_id}',[ActivityController::class,'feedback'])->name('activity.feedback');
 Route::post('/activity/public/feedback/{event_id}',[ActivityController::class,'postfeedback'])->name('activity.postfeedback');
 
+Route::get('/activity/public/open-form/{id}', [ActivityController::class, 'publicForm'])->name('activity.publicform');
+
 // Old public paths -> redirect
 Route::get('/event/public/feedback/{event_id}', fn($event_id) => redirect()->route('activity.feedback', $event_id));
 Route::post('/event/public/feedback/{event_id}', fn($event_id) => redirect()->route('activity.feedback', $event_id));

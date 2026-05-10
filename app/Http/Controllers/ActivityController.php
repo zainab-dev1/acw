@@ -99,6 +99,12 @@ class ActivityController extends Controller
         // Feedback button visibility (optional)
         $data['has_feedback'] = (int)($request->input('has_feedback', 1) ?? 1);
 
+        // Allow general feedback without attendance (optional)
+        // Guarded by Schema check to avoid SQL errors if migration isn't applied yet.
+        if (\Schema::hasColumn('events', 'allow_public_feedback_without_attendance')) {
+            $data['allow_public_feedback_without_attendance'] = (int)($request->input('allow_public_feedback_without_attendance', 0) ?? 0);
+        }
+
         // Issue certificate after feedback? (optional)
         $data['has_certificate'] = (int)($request->input('has_certificate', 1) ?? 1);
 
@@ -172,6 +178,12 @@ class ActivityController extends Controller
         // Feedback button visibility (optional)
         $data['has_feedback'] = (int)($request->input('has_feedback', 1) ?? 1);
 
+        // Allow general feedback without attendance (optional)
+        // Guarded by Schema check to avoid SQL errors if migration isn't applied yet.
+        if (\Schema::hasColumn('events', 'allow_public_feedback_without_attendance')) {
+            $data['allow_public_feedback_without_attendance'] = (int)($request->input('allow_public_feedback_without_attendance', 0) ?? 0);
+        }
+
         // Issue certificate after feedback? (optional)
         $data['has_certificate'] = (int)($request->input('has_certificate', 1) ?? 1);
 
@@ -242,7 +254,45 @@ class ActivityController extends Controller
             return redirect()->route('public.upcoming');
         }
 
-        return view('survey.feedback')->with('survey_id', $survey_id);
+        return view('survey.feedback')
+            ->with('survey_id', $survey_id)
+            ->with('survey', $survey);
+    }
+
+    public function publicForm($id)
+    {
+        $survey = Activity::findOrFail($id);
+
+        if ((int)($survey->has_feedback ?? 1) !== 1) {
+            toast('Feedback is closed', 'error');
+            return redirect()->route('public.upcoming');
+        }
+
+        if ((int)($survey->allow_public_feedback_without_attendance ?? 0) !== 1) {
+            toast('Public feedback without attendance is not enabled', 'error');
+            return redirect()->route('activity.feedback', $id);
+        }
+
+        if ((int)($survey->is_open ?? 0) !== 1) {
+            toast('Survey is Already closed', 'error');
+            return redirect()->route('activity.feedback', $id);
+        }
+
+        // No attendance record (general evaluation)
+        $attendance = null;
+
+        if ((int)$survey->survey_type_id === 1) {
+            return view('survey.form_cts')->with('survey', $survey)->with('attendance', $attendance);
+        }
+        if ((int)$survey->survey_type_id === 2) {
+            return view('survey.form_iv')->with('survey', $survey)->with('attendance', $attendance);
+        }
+        if ((int)$survey->survey_type_id === 3) {
+            return view('survey.form_gl')->with('survey', $survey)->with('attendance', $attendance);
+        }
+
+        toast('Unsupported survey type', 'error');
+        return redirect()->route('activity.feedback', $id);
     }
 
     public function postfeedback(Request $request, $survey_id)
@@ -320,11 +370,17 @@ class ActivityController extends Controller
 
     public function postform(Request $request, $id)
     {
-        $attendance = EventAttendance::findOrFail($request->attendance_id);
-
         $survey = Activity::find($id);
+        if (!$survey) {
+            Alert::error('Error', 'Activity not found');
+            return redirect()->route('activity.public');
+        }
 
-        if ($attendance) {
+        $attendanceId = (int)($request->input('attendance_id', 0) ?? 0);
+
+        // Attendance-based feedback (existing flow)
+        if ($attendanceId > 0) {
+            $attendance = EventAttendance::findOrFail($attendanceId);
 
             $survey_result = EventResult::where('attendance_id', $attendance->id)->first();
 
@@ -337,7 +393,7 @@ class ActivityController extends Controller
 
                 $createdResult = EventResult::create($request->all());
 
-                $shouldIssueCertificate = $survey && (int)($survey->has_certificate ?? 1) === 1;
+                $shouldIssueCertificate = (int)($survey->has_certificate ?? 1) === 1;
 
                 if ($shouldIssueCertificate) {
                     // Issue certificate only AFTER feedback submission
@@ -353,13 +409,64 @@ class ActivityController extends Controller
 
                 Alert::success('شكراً لتقييمكم', 'تم استلام تقييمكم بنجاح');
                 return redirect()->route('activity.public');
-            } else {
-                Alert::error('Error', 'Your Have already submitted your feedback');
             }
-        } else {
-            Alert::error('Error', 'Your Have not attended');
+
+            Alert::error('Error', 'Your Have already submitted your feedback');
+            return redirect()->route('activity.public');
         }
 
+        // Public feedback without attendance (new flow)
+        if ((int)($survey->has_feedback ?? 1) !== 1 || (int)($survey->is_open ?? 0) !== 1) {
+            Alert::error('Error', 'Feedback is closed');
+            return redirect()->route('activity.public');
+        }
+
+        if ((int)($survey->allow_public_feedback_without_attendance ?? 0) !== 1) {
+            Alert::error('Error', 'Public feedback without attendance is not enabled');
+            return redirect()->route('activity.feedback', $id);
+        }
+
+        $validated = $request->validate([
+            'participant_name_en' => 'required|string|max:255',
+            'participant_name_ar' => 'nullable|string|max:255',
+            'participant_department' => 'nullable|string|max:255',
+            'participant_section' => 'nullable|string|max:255',
+            'q1' => 'required|integer|min:1|max:5',
+            'q2' => 'required|integer|min:1|max:5',
+            'q3' => 'required|integer|min:1|max:5',
+            'q4' => 'required|integer|min:1|max:5',
+            'q5' => 'required|integer|min:1|max:5',
+            'q6' => 'required|integer|min:1|max:5',
+            'q7' => 'required|integer|min:1|max:5',
+            'q8' => 'required|integer|min:1|max:5',
+            'q9' => 'required|integer|min:1|max:5',
+            'q10' => 'required|integer|min:1|max:5',
+            'comments' => 'nullable|string',
+        ]);
+
+        EventResult::create([
+            'survey_id' => $id,
+            'attendance_id' => 0,
+            'civil_no' => null,
+            'email' => null,
+            'participant_name' => $validated['participant_name_en'],
+            'participant_name_ar' => $validated['participant_name_ar'] ?? null,
+            'participant_department' => $validated['participant_department'] ?? null,
+            'participant_section' => $validated['participant_section'] ?? null,
+            'q1' => $validated['q1'],
+            'q2' => $validated['q2'],
+            'q3' => $validated['q3'],
+            'q4' => $validated['q4'],
+            'q5' => $validated['q5'],
+            'q6' => $validated['q6'],
+            'q7' => $validated['q7'],
+            'q8' => $validated['q8'],
+            'q9' => $validated['q9'],
+            'q10' => $validated['q10'],
+            'comments' => $validated['comments'] ?? null,
+        ]);
+
+        Alert::success('شكراً لتقييمكم', 'تم استلام تقييمكم بنجاح');
         return redirect()->route('activity.public');
     }
 

@@ -205,6 +205,12 @@
                             <i class="ti-comment"></i> Feedback
                         </a>
                     @endif
+
+                    @if((int)($activity->allow_public_feedback_without_attendance ?? 0) === 1 && (int)($activity->has_feedback ?? 1) === 1)
+                        <a class="btn btn-outline-primary" style="border-radius: 10px; font-weight: 900;" href="{{ route('activity.publicform', $activity->id) }}">
+                            <i class="ti-write"></i> General Evaluation
+                        </a>
+                    @endif
                 @endif
             </div>
             <div>

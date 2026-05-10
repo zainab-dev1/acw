@@ -105,6 +105,21 @@
                                         <a href="{{ route('activity.participants', $survey->id) }}" class="btn btn-warning btn-sm" style="border-radius: 6px;">
                                             <i class="ti-user"></i> Participants
                                         </a>
+
+                                        @if((int)($survey->allow_public_feedback_without_attendance ?? 0) === 1)
+                                            @php $public_feedback_link = route('activity.publicform', $survey->id) @endphp
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm"
+                                                style="border-radius: 6px;"
+                                                data-copy="{{ $public_feedback_link }}"
+                                                onclick="copyActivityLink(this)">
+                                                <i class="ti-link"></i> Copy Feedback Link
+                                            </button>
+                                            <a href="{{ $public_feedback_link }}" target="_blank" rel="noopener" class="btn btn-light btn-sm" style="border-radius: 6px;">
+                                                <i class="ti-new-window"></i>
+                                            </a>
+                                        @endif
+
                                         <a href="{{ route('activity.edit',$survey->id) }}" class="btn btn-primary btn-sm" style="border-radius: 6px;">
                                             <i class="ti-pencil"></i> Edit
                                         </a>
@@ -124,6 +139,51 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('jscript')
+<script>
+    function copyActivityLink(btn) {
+        var link = btn.getAttribute('data-copy');
+        if (!link) return;
+
+        // Preferred modern API
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(link).then(function () {
+                btn.innerHTML = '<i class="ti-check"></i> Copied';
+                setTimeout(function(){ btn.innerHTML = '<i class="ti-link"></i> Copy Feedback Link'; }, 1500);
+            }).catch(function () {
+                fallbackCopyTextToClipboard(link, btn);
+            });
+            return;
+        }
+
+        fallbackCopyTextToClipboard(link, btn);
+    }
+
+    function fallbackCopyTextToClipboard(text, btn) {
+        var textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        textArea.style.top = '0';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            document.execCommand('copy');
+            if (btn) {
+                btn.innerHTML = '<i class="ti-check"></i> Copied';
+                setTimeout(function(){ btn.innerHTML = '<i class="ti-link"></i> Copy Feedback Link'; }, 1500);
+            }
+        } catch (err) {
+            alert('Copy failed. Link: ' + text);
+        }
+
+        document.body.removeChild(textArea);
+    }
+</script>
 @endsection
 
 @section('css')

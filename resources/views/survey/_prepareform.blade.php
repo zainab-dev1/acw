@@ -55,6 +55,18 @@
 </div>
 
 <div class="form-group">
+    <label for="allow_public_feedback_without_attendance">Allow feedback without attendance?</label>
+    {{ Form::select('allow_public_feedback_without_attendance', [0 => 'No (attendance required)', 1 => 'Yes (general evaluation)'], null, ['class' => 'form-control']) }}
+    <small class="text-muted">If enabled, users can submit general feedback without attendance/certificate.</small>
+</div>
+
+<div class="form-group">
+    <label for="allow_public_feedback_without_attendance">Allow public feedback without attendance?</label>
+    {{ Form::select('allow_public_feedback_without_attendance', [0 => 'No (require attendance)', 1 => 'Yes (general evaluation without attendance)'], null, ['class' => 'form-control']) }}
+    <small class="text-muted">If enabled, users can submit a general evaluation without matching attendance. Certificates will not be issued via that path.</small>
+</div>
+
+<div class="form-group">
     <label for="has_certificate">Issue certificate after feedback?</label>
     {{ Form::select('has_certificate', [1 => 'Yes', 0 => 'No'], null, ['class' => 'form-control']) }}
     <small class="text-muted">If enabled, a certificate will be issued after feedback submission. If disabled, users will only see a thank-you message.</small>

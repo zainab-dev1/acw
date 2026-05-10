@@ -22,6 +22,7 @@ class Activity extends Model
     protected $casts = [
         'has_attachment' => 'boolean',
         'has_feedback' => 'boolean',
+        'allow_public_feedback_without_attendance' => 'boolean',
         'has_certificate' => 'boolean',
         'has_participant_limit' => 'boolean',
         'is_open' => 'boolean',
