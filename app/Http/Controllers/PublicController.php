@@ -31,14 +31,9 @@ class PublicController extends Controller
 
     public function upcomingActivities()
     {
-        // Get active academic year
-        $academic_year = AcademicYear::where('is_active', 1)->first();
-
-        // Upcoming activities (list view)
+        // All activities (list view)
         $events = Activity::with(['type', 'detail'])
-            ->where('academic_year_id', $academic_year->id ?? null)
-            ->whereDate('training_date', '>=', now()->toDateString())
-            ->orderBy('training_date', 'asc')
+            ->orderBy('training_date', 'desc')
             ->get();
 
         return view('activity.upcoming')

@@ -116,8 +116,8 @@
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center flex-wrap" style="gap: 12px;">
                     <div>
-                        <h2 style="margin:0; font-weight: 900;">الأنشطة القادمة</h2>
-                        <div style="opacity:0.95; margin-top: 6px; font-weight: 700;">Upcoming Activities</div>
+                        <h2 style="margin:0; font-weight: 900;">جميع الفعاليات</h2>
+                        <div style="opacity:0.95; margin-top: 6px; font-weight: 700;">All Activities</div>
                     </div>
                     <div>
                         <a href="{{ route('public') }}" class="btn btn-light" style="border-radius: 10px; font-weight: 800;">
@@ -138,7 +138,7 @@
             @if(($events ?? collect())->count() === 0)
                 <div class="text-center" style="padding: 40px 10px; color: #64748b;">
                     <i class="ti-calendar" style="font-size: 48px; color:#cbd5e1;"></i>
-                    <h4 style="margin-top: 12px; font-weight: 900;">لا توجد أنشطة قادمة</h4>
+                    <h4 style="margin-top: 12px; font-weight: 900;">لا توجد فعاليات</h4>
                 </div>
             @else
                 <div class="row g-3">
