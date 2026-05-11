@@ -43,18 +43,6 @@
                         </button>
                         
                         {{ Form::close() }}
-
-                        @if(!empty($survey) && (int)($survey->allow_public_feedback_without_attendance ?? 0) === 1)
-                            <div class="text-center" style="margin-top: 18px;">
-                                <div style="opacity: 0.55; margin: 10px 0;">— or —</div>
-                                <a href="{{ route('activity.publicform', $survey->id) }}" class="btn btn-outline-primary btn-block">
-                                    General Evaluation (no attendance)
-                                </a>
-                                <small style="color: #64748b; font-size: 12px; margin-top: 6px; display: block;">
-                                    This option is for general feedback and does not issue certificates.
-                                </small>
-                            </div>
-                        @endif
                         
                         <div class="text-center m-t-15">
                             <a href="{{ route('activity.public') }}" style="color: #4f46e5; font-size: 14px; text-decoration: none; font-weight: 500;">

@@ -229,6 +229,34 @@
         top: 50%;
         transform: translateY(-50%);
         height: 2px;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 208, 255, 0) 0%,
+            rgba(0, 208, 255, 0.85) 18%,
+            rgba(190, 246, 255, 0.95) 50%,
+            rgba(0, 208, 255, 0.85) 82%,
+            rgba(0, 208, 255, 0) 100%
+        );
+        box-shadow:
+            0 0 10px rgba(0, 208, 255, 0.55),
+            0 0 28px rgba(0, 208, 255, 0.35);
+        border-radius: 999px;
+    }
+    .acw-divider::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0, 208, 255, 0.95) 35%, rgba(0,208,255,0) 70%);
+        box-shadow:
+            0 0 20px rgba(0, 208, 255, 0.8),
+            0 0 48px rgba(0, 208, 255, 0.55);
+    }
+
     /* --- Mobile tweaks for homepage only --- */
     @media (max-width: 576px) {
         /* Main title */
@@ -266,6 +294,10 @@
         .acw-sponsor-card .acw-sponsor-name { font-size: 14px !important; }
         .acw-sponsor-card .acw-sponsor-logo { height: 70px !important; }
 
+        /* Main sponsor: larger than others */
+        .acw-sponsor-card-main { width: 92% !important; max-width: 420px !important; }
+        .acw-sponsor-card-main .acw-sponsor-logo-main { height: 130px !important; }
+
         /* Date/venue/time row */
         .acw-info-row {
             flex-direction: column !important;
@@ -285,33 +317,14 @@
         }
         .acw-info-text { font-size: 18px !important; }
         .acw-info-item img { width: 38px !important; height: 38px !important; }
-            rgba(0, 208, 255, 0) 100%
-        );
-        box-shadow:
-            0 0 10px rgba(0, 208, 255, 0.55),
-            0 0 28px rgba(0, 208, 255, 0.35);
-        border-radius: 999px;
     }
-    .acw-divider::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0, 208, 255, 0.95) 35%, rgba(0,208,255,0) 70%);
-        box-shadow:
-            0 0 20px rgba(0, 208, 255, 0.8),
-            0 0 48px rgba(0, 208, 255, 0.55);
+
+    @media (max-width: 480px) {
+        .container {
+            width: 100%;
+            padding: 10px;
+        }
     }
-            @media (max-width: 480px) {
-            .container {
-                justify-content: center;
-                width: 100%;
-                padding: 10px;
-            }
 </style>
 
 <div style="min-height: 100vh; background: url('{{ asset('theme/images/bggggg.jpg') }}') center/cover no-repeat; padding: 13px 0 40px;">
@@ -444,45 +457,41 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="activity-sections" style="text-align:center;">
-                    <div class="activity-sections-title activity-sections-title-sm" style="margin-bottom: 14px;">
-                        Sponsors / الداعمين
-                    </div>
+<br>
+                    @php($strategicSponsors = $strategicSponsors ?? [])
+                    @php($supportiveSponsors = $supportiveSponsors ?? [])
 
-                    <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center; padding: 8px 6px 2px;">
-                        @php($sponsorLogo = asset('theme/images/acw-ic-white.png'))
-                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
-                                    <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
+                    @if(count($strategicSponsors) > 0)
+                        <div style="color: rgba(255,255,255,0.95); font-weight: 900; margin: 10px 0 10px; font-size: 24px;">
+                            Main Sponsor / <span dir="rtl">راعي رئيسي</span>
+                        </div>
+                        <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center; padding: 8px 6px 2px;">
+                            @foreach($strategicSponsors as $sponsor)
+                                <div class="acw-sponsor-card acw-sponsor-card-main" style="width: 340px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 16px; gap: 8px; overflow: hidden;">
+                                    <div class="acw-sponsor-logo acw-sponsor-logo-main" style="width: 100%; height: 180px; display:flex; align-items:center; justify-content:center;">
+                                        <img src="{{ $sponsor['url'] }}" alt="{{ $sponsor['name'] ?? 'Main Sponsor' }}" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;">
+                                    </div>
                                 </div>
-                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
-                                    Sponsor 1
-                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(count($supportiveSponsors) > 0)
+                        <div style="color: rgba(255,255,255,0.95); font-weight: 900; margin: 18px 0 10px; font-size: 20px;">
+                            Supportive Sponsor / <span dir="rtl">راعي داعم</span><br>
+                        </div>
+                        <div style="max-width: 980px; margin: 0 auto; background: #ffffff; border: 1px solid rgba(15, 23, 42, 0.10); box-shadow: 0 14px 32px rgba(0,0,0,0.18); overflow: hidden; border-radius: 50px; padding: 18px 14px;">
+                            <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center;">
+                                @foreach($supportiveSponsors as $sponsor)
+                                    <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 6px; gap: 8px; background: transparent; border: none; box-shadow: none; border-radius: 0;">
+                                        <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
+                                            <img src="{{ $sponsor['url'] }}" alt="{{ $sponsor['name'] ?? 'Supportive Sponsor' }}" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
-                                    <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
-                                </div>
-                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
-                                    Sponsor 2
-                                </div>
-                            </div>
-                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
-                                    <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
-                                </div>
-                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
-                                    Sponsor 3
-                                </div>
-                            </div>
-                            <div class="acw-sponsor-card" style="width: 160px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 10px; gap: 8px;">
-                                <div class="acw-sponsor-logo" style="width: 100%; height: 90px; display:flex; align-items:center; justify-content:center;">
-                                    <img src="{{ $sponsorLogo }}" alt="Sponsor" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));">
-                                </div>
-                                <div class="acw-sponsor-name" style="color: white; font-size: 18px; font-weight: 700; font-family: 'DINNextLTArabic', sans-serif; line-height: 1;">
-                                    Sponsor 4
-                                </div>
-                            </div>
-                    </div>
+                        </div>
+                    @endif
                     <br><br>
                     <div class="row">
                         <div class="col-lg-12"><br>
