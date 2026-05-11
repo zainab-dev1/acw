@@ -22,9 +22,27 @@ class ActivityController extends Controller
     {
         $activity = Activity::with(['type', 'detail'])->findOrFail($id);
 
+        // Hide activities that are intended to be accessed only via the admin-provided evaluation link
+        if ((int)($activity->allow_public_feedback_without_attendance ?? 0) === 1) {
+            abort(404);
+        }
+
         // For simple navigation
-        $next = Activity::where('id', '>', $activity->id)->orderBy('id')->first();
-        $prev = Activity::where('id', '<', $activity->id)->orderByDesc('id')->first();
+        $nextQuery = Activity::where('id', '>', $activity->id)->orderBy('id');
+        $prevQuery = Activity::where('id', '<', $activity->id)->orderByDesc('id');
+
+        // Avoid navigating to hidden activities
+        $nextQuery->where(function ($q) {
+            $q->whereNull('allow_public_feedback_without_attendance')
+                ->orWhere('allow_public_feedback_without_attendance', '!=', 1);
+        });
+        $prevQuery->where(function ($q) {
+            $q->whereNull('allow_public_feedback_without_attendance')
+                ->orWhere('allow_public_feedback_without_attendance', '!=', 1);
+        });
+
+        $next = $nextQuery->first();
+        $prev = $prevQuery->first();
 
         return view('activity.show_public')
             ->with('activity', $activity)

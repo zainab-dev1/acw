@@ -7,6 +7,7 @@ use App\Models\AcademicYear;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 
 class PublicController extends Controller
 {
@@ -68,10 +69,18 @@ class PublicController extends Controller
 
     public function upcomingActivities()
     {
-        // All activities (list view)
-        $events = Activity::with(['type', 'detail'])
-            ->orderBy('training_date', 'desc')
-            ->get();
+        // All activities (list view) - hide "general evaluation" only activities
+        $query = Activity::with(['type', 'detail'])
+            ->orderBy('training_date', 'desc');
+
+        if (Schema::hasColumn('events', 'allow_public_feedback_without_attendance')) {
+            $query->where(function ($q) {
+                $q->whereNull('allow_public_feedback_without_attendance')
+                    ->orWhere('allow_public_feedback_without_attendance', '!=', 1);
+            });
+        }
+
+        $events = $query->get();
 
         return view('activity.upcoming')
             ->with('events', $events);
